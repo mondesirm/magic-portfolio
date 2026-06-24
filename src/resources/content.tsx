@@ -1,5 +1,5 @@
-import { About, Blog, Gallery, Home, Newsletter, Person, Social, Work } from "@/types";
 import { Line, Row, Text } from "@once-ui-system/core";
+import type { About, Blog, Gallery, Home, Newsletter, Person, Social, Work } from "@/types";
 
 const person: Person = {
   firstName: "Selene",
@@ -78,7 +78,10 @@ const home: Home = {
   subline: (
     <>
       I'm {person.firstName}, a {person.role.toLowerCase()} at{" "}
-      <Text as="span" size="xl" weight="strong">ONCE UI</Text>, where I craft intuitive <br /> user experiences. After hours, I build my own projects.
+      <Text as="span" size="xl" weight="strong">
+        ONCE UI
+      </Text>
+      , where I craft intuitive <br /> user experiences. After hours, I build my own projects.
     </>
   ),
 };
@@ -104,9 +107,10 @@ const about: About = {
     title: "Introduction",
     description: (
       <>
-        {person.firstName} is a {person.location.split("/")[1]?.replace("_", " ")}-based {person.role.toLowerCase()} with a passion for transforming complex challenges
-        into simple, elegant design solutions. Their work spans digital interfaces, interactive
-        experiences, and the convergence of design and technology.
+        {person.firstName} is a {person.location.split("/")[1]?.replace("_", " ")}-based{" "}
+        {person.role.toLowerCase()} with a passion for transforming complex challenges into simple,
+        elegant design solutions. Their work spans digital interfaces, interactive experiences, and
+        the convergence of design and technology.
       </>
     ),
   },
@@ -176,9 +180,7 @@ const about: About = {
     skills: [
       {
         title: "Figma",
-        description: (
-          <>Able to prototype in Figma with Once UI with unnatural speed.</>
-        ),
+        description: <>Able to prototype in Figma with Once UI with unnatural speed.</>,
         tags: [
           {
             name: "Figma",
@@ -203,9 +205,7 @@ const about: About = {
       },
       {
         title: "Next.js",
-        description: (
-          <>Building next gen apps with Next.js + Once UI + Supabase.</>
-        ),
+        description: <>Building next gen apps with Next.js + Once UI + Supabase.</>,
         tags: [
           {
             name: "JavaScript",
@@ -303,4 +303,4 @@ const gallery: Gallery = {
   ],
 };
 
-export { person, social, newsletter, home, about, blog, work, gallery };
+export { about, blog, gallery, home, newsletter, person, social, work };

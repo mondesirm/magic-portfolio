@@ -5,7 +5,7 @@
     "dev": "next dev",
     "export": "next export",
     "build": "next build",
-    "biome-write": "pnx @biomejs/biome format --write .",
+    "biome-write": "pnx @biomejs/biome check --write .",
     "start": "next start",
     "lint": "next lint"
   },

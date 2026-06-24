@@ -2,19 +2,18 @@ import "@once-ui-system/core/css/styles.css";
 import "@once-ui-system/core/css/tokens.css";
 import "@/resources/custom.css";
 
-import classNames from "classnames";
-
 import {
   Background,
   Column,
   Flex,
   Meta,
-  opacity,
+  type opacity,
   RevealFx,
-  SpacingToken,
+  type SpacingToken,
 } from "@once-ui-system/core";
-import { Footer, Header, RouteGuard, Providers } from "@/components";
-import { baseURL, effects, fonts, style, dataStyle, home, person } from "@/resources";
+import classNames from "classnames";
+import { Footer, Header, Providers, RouteGuard } from "@/components";
+import { baseURL, dataStyle, effects, fonts, home, person, style } from "@/resources";
 
 export async function generateMetadata() {
   return Meta.generate({
@@ -47,13 +46,14 @@ export default async function RootLayout({
       <head>
         <script
           id="theme-init"
+          // biome-ignore lint/security/noDangerouslySetInnerHtml: trusted script
           dangerouslySetInnerHTML={{
             __html: `
               (function() {
                 try {
                   const root = document.documentElement;
                   const defaultTheme = 'system';
-                  
+
                   // Set defaults from config
                   const config = ${JSON.stringify({
                     brand: style.brand,
@@ -67,12 +67,12 @@ export default async function RootLayout({
                     scaling: style.scaling,
                     "viz-style": dataStyle.variant,
                   })};
-                  
+
                   // Apply default values
                   Object.entries(config).forEach(([key, value]) => {
                     root.setAttribute('data-' + key, value);
                   });
-                  
+
                   // Resolve theme
                   const resolveTheme = (themeValue) => {
                     if (!themeValue || themeValue === 'system') {
@@ -80,12 +80,12 @@ export default async function RootLayout({
                     }
                     return themeValue;
                   };
-                  
+
                   // Apply saved theme
                   const savedTheme = localStorage.getItem('data-theme');
                   const resolvedTheme = resolveTheme(savedTheme);
                   root.setAttribute('data-theme', resolvedTheme);
-                  
+
                   // Apply any saved style overrides
                   const styleKeys = Object.keys(config);
                   styleKeys.forEach(key => {

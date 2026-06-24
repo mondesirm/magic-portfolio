@@ -1,11 +1,12 @@
+import Image from "next/image";
 import { ImageResponse } from "next/og";
 import { baseURL, person } from "@/resources";
 
 export const runtime = "nodejs";
 
 export async function GET(request: Request) {
-  let url = new URL(request.url);
-  let title = url.searchParams.get("title") || "Portfolio";
+  const url = new URL(request.url);
+  const title = url.searchParams.get("title") || "Portfolio";
 
   async function loadGoogleFont(font: string) {
     const url = `https://fonts.googleapis.com/css2?family=${font}`;
@@ -14,7 +15,7 @@ export async function GET(request: Request) {
 
     if (resource) {
       const response = await fetch(resource[1]);
-      if (response.status == 200) {
+      if (response.status === 200) {
         return await response.arrayBuffer();
       }
     }
@@ -62,7 +63,8 @@ export async function GET(request: Request) {
             gap: "5rem",
           }}
         >
-          <img
+          <Image
+            alt={person.name}
             src={baseURL + person.avatar}
             style={{
               width: "12rem",
