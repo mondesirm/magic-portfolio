@@ -30,12 +30,12 @@ src/resources/once-ui.config.ts
 
 **5. Edit content**
 ```
-src/resources/content.ts
+src/resources/content.tsx (or content-i18n for localization)
 ```
 
 **6. Create blog posts / projects**
 ```
-Add a new .mdx file to src/app/blog/posts or src/app/work/projects
+Add a new .mdx file to src/app/[locale]/blog/posts or src/app/[locale]/work/projects
 ```
 
 Magic Portfolio was built with [Once UI](https://once-ui.com) for [Next.js](https://nextjs.org). It requires Node.js v18.17+.
@@ -65,8 +65,8 @@ Docs available at: [docs.once-ui.com](https://docs.once-ui.com/docs/magic-portfo
 - Set up password protection for URLs
 
 ### Localization
-- A localized version of this template is available with the `next-intl` library
-- To use localization, switch to the `i18n` branch
+- Magic Portfolio now supports localization with the `next-intl` library
+- See more info in `resources/once-ui.config.ts`
 
 ## Creators
 

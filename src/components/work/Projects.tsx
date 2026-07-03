@@ -5,10 +5,11 @@ import { getPosts } from "@/utils/utils";
 interface ProjectsProps {
   range?: [number, number?];
   exclude?: string[];
+  locale: string;
 }
 
-export function Projects({ range, exclude }: ProjectsProps) {
-  let allProjects = getPosts(["src", "app", "work", "projects"]);
+export function Projects({ range, exclude, locale }: ProjectsProps) {
+  let allProjects = getPosts(["src", "app", "[locale]", "work", "projects", locale]);
 
   // Exclude by slug (exact match)
   if (exclude && exclude.length > 0) {

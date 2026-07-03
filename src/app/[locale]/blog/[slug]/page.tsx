@@ -13,28 +13,42 @@ import {
 } from "@once-ui-system/core";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import { CustomMDX, ScrollToHash } from "@/components";
 import { Posts } from "@/components/blog/Posts";
 import { ShareSection } from "@/components/blog/ShareSection";
-import { author, baseURL, blog, person } from "@/resources";
+import { routing } from "@/i18n/routing";
+import { author, baseURL, renderContent } from "@/resources";
 import type { PageProps, Params } from "@/types";
 import { formatDate } from "@/utils/formatDate";
 import { getPosts } from "@/utils/utils";
 
 export async function generateStaticParams(): Promise<Params[]> {
-  return getPosts(["src", "app", "blog", "posts"]).map((post) => ({ slug: post.slug }));
+  const { locales } = routing;
+
+  return locales.flatMap((locale) =>
+    getPosts(["src", "app", "[locale]", "blog", "posts", locale]).map((post) => ({
+      locale,
+      slug: post.slug,
+    })),
+  );
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
-  const { slug } = await params;
+  const { locale, slug } = await params;
   const path = Array.isArray(slug) ? slug.join("/") : slug || "";
 
-  const post = getPosts(["src", "app", "blog", "posts"]).find((post) => post.slug === path);
+  const post = getPosts(["src", "app", "[locale]", "blog", "posts", locale]).find(
+    (post) => post.slug === path,
+  );
 
   if (!post) return {};
 
+  const t = await getTranslations();
+  const { blog } = renderContent(t);
+
   return Meta.generate({
-    baseURL: baseURL,
+    baseURL: `${baseURL}/${locale}`,
     path: `${blog.path}/${post.slug}`,
     image: post.metadata.image || `/api/og/generate?title=${post.metadata.title}`,
     title: post.metadata.title,
@@ -43,12 +57,18 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 }
 
 export default async function Post({ params }: PageProps) {
-  const { slug } = await params;
+  const { locale, slug } = await params;
   const path = Array.isArray(slug) ? slug.join("/") : slug || "";
+  setRequestLocale(locale);
 
-  const post = getPosts(["src", "app", "blog", "posts"]).find((post) => post.slug === path);
+  const post = getPosts(["src", "app", "[locale]", "blog", "posts", locale]).find(
+    (post) => post.slug === path,
+  );
 
   if (!post) notFound();
+
+  const t = await getTranslations();
+  const { blog, person } = renderContent(t);
 
   return (
     <Row fillWidth>
@@ -58,8 +78,8 @@ export default async function Post({ params }: PageProps) {
         <Column as="section" maxWidth="m" horizontal="center" gap="l" paddingTop="24">
           <Schema
             as="blogPosting"
-            author={author}
-            baseURL={baseURL}
+            author={author(locale)}
+            baseURL={`${baseURL}/${locale}`}
             path={`${blog.path}/${post.slug}`}
             image={
               post.metadata.image ||
@@ -72,7 +92,7 @@ export default async function Post({ params }: PageProps) {
           />
 
           <Column maxWidth="s" gap="16" horizontal="center" align="center">
-            <SmartLink href={blog.path}>
+            <SmartLink href={`/${locale}${blog.path}`}>
               <Text variant="label-strong-m">{blog.label}</Text>
             </SmartLink>
 
@@ -122,7 +142,10 @@ export default async function Post({ params }: PageProps) {
             <CustomMDX source={post.content} />
           </Column>
 
-          <ShareSection title={post.metadata.title} url={`${baseURL}${blog.path}/${post.slug}`} />
+          <ShareSection
+            title={post.metadata.title}
+            url={`${baseURL}/${locale}/${blog.path}/${post.slug}`}
+          />
 
           <Column fillWidth gap="40" horizontal="center" marginTop="40">
             <Line maxWidth="40" />
@@ -131,7 +154,14 @@ export default async function Post({ params }: PageProps) {
               {blog.recent}
             </Text>
 
-            <Posts exclude={[post.slug]} range={[1, 2]} columns="2" thumbnail direction="column" />
+            <Posts
+              exclude={[post.slug]}
+              range={[1, 2]}
+              columns="2"
+              thumbnail
+              direction="column"
+              locale={locale}
+            />
           </Column>
 
           <ScrollToHash />

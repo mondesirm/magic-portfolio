@@ -12,19 +12,30 @@ import {
   Text,
 } from "@once-ui-system/core";
 import type { Metadata } from "next";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Mailchimp } from "@/components";
 import { Posts } from "@/components/blog/Posts";
 import { Projects } from "@/components/work/Projects";
-import { about, author, baseURL, home, person, routes } from "@/resources";
+import { author, baseURL, renderContent, routes } from "@/resources";
+import type { PageProps } from "@/types";
 
-export async function generateMetadata(): Promise<Metadata> {
-  return Meta.generate({ ...home, baseURL });
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations();
+  const { home } = renderContent(t);
+
+  return Meta.generate({ ...home, baseURL: `${baseURL}/${locale}` });
 }
 
-export default function Home() {
+export default async function Home({ params }: PageProps) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+  const t = await getTranslations();
+  const { about, home, newsletter, person } = renderContent(t);
+
   return (
     <Column maxWidth="m" gap="xl" paddingY="12" horizontal="center">
-      <Schema {...home} as="webPage" author={author} baseURL={baseURL} />
+      <Schema {...home} as="webPage" author={author(locale)} baseURL={`${baseURL}/${locale}`} />
 
       <Column fillWidth horizontal="center" gap="m">
         <Column maxWidth="s" horizontal="center" align="center">
@@ -43,7 +54,7 @@ export default function Home() {
                 onBackground="neutral-strong"
                 textVariant="label-default-s"
                 arrow={false}
-                href={home.featured.href}
+                href={`/${locale}/${home.featured.href}`}
               >
                 <Row paddingY="2">{home.featured.title}</Row>
               </Badge>
@@ -66,7 +77,7 @@ export default function Home() {
             <Button
               id="about"
               data-border="rounded"
-              href={about.path}
+              href={`/${locale}/${about.path}`}
               variant="secondary"
               size="m"
               weight="default"
@@ -90,7 +101,7 @@ export default function Home() {
       </Column>
 
       <RevealFx translateY="16" delay={0.6}>
-        <Projects range={[1, 1]} />
+        <Projects range={[1, 1]} locale={locale} />
       </RevealFx>
 
       {routes["/blog"] && (
@@ -107,7 +118,7 @@ export default function Home() {
             </Row>
 
             <Row flex={3} paddingX="20">
-              <Posts range={[1, 2]} columns="2" />
+              <Posts range={[1, 2]} columns="2" locale={locale} />
             </Row>
           </Row>
 
@@ -117,8 +128,8 @@ export default function Home() {
         </Column>
       )}
 
-      <Projects range={[2]} />
-      <Mailchimp />
+      <Projects range={[2]} locale={locale} />
+      <Mailchimp newsletter={newsletter} />
     </Column>
   );
 }

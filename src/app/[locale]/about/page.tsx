@@ -13,16 +13,27 @@ import {
   Text,
 } from "@once-ui-system/core";
 import type { Metadata } from "next";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import React from "react";
 import styles from "@/components/about/about.module.scss";
 import TableOfContents from "@/components/about/TableOfContents";
-import { about, author, baseURL, person, social } from "@/resources";
+import { author, baseURL, renderContent } from "@/resources";
+import type { PageProps } from "@/types";
 
-export async function generateMetadata(): Promise<Metadata> {
-  return Meta.generate({ ...about, baseURL });
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations();
+  const { about } = renderContent(t);
+
+  return Meta.generate({ ...about, baseURL: `${baseURL}/${locale}` });
 }
 
-export default function About() {
+export default async function About({ params }: PageProps) {
+  const { locale } = await params;
+  setRequestLocale(locale);
+  const t = await getTranslations();
+  const { about, person, social } = renderContent(t);
+
   const structure = [
     {
       title: about.intro.title,
@@ -48,7 +59,15 @@ export default function About() {
 
   return (
     <Column maxWidth="m">
-      <Schema {...about} as="webPage" author={author} baseURL={baseURL} />
+      <Schema
+        {...about}
+        as="webPage"
+        author={author(locale)}
+        baseURL={`${baseURL}/${locale}`}
+        sameAs={social
+          .filter((item) => item.link && !item.link.startsWith("mailto:")) // Filter out empty links and email links
+          .map((item) => item.link)}
+      />
 
       {about.tableOfContent.display && (
         <Column

@@ -1,9 +1,13 @@
 import { IconButton, Row, SmartLink, Text } from "@once-ui-system/core";
-import { person, social } from "@/resources";
+import { useTranslations } from "next-intl";
+import { renderContent } from "@/resources";
 import styles from "./Footer.module.scss";
 
 export const Footer = () => {
   const currentYear = new Date().getFullYear();
+
+  const t = useTranslations();
+  const { person, social } = renderContent(t);
 
   return (
     <Row as="footer" fillWidth padding="8" horizontal="center" s={{ direction: "column" }}>

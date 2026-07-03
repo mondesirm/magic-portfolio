@@ -12,7 +12,7 @@ import {
   Text,
 } from "@once-ui-system/core";
 import { useState } from "react";
-import { mailchimp, newsletter } from "@/resources";
+import { mailchimp } from "@/resources";
 
 function debounce<T extends (...args: any[]) => void>(func: T, delay: number): T {
   let timeout: ReturnType<typeof setTimeout>;
@@ -22,7 +22,16 @@ function debounce<T extends (...args: any[]) => void>(func: T, delay: number): T
   }) as T;
 }
 
-export const Mailchimp: React.FC<React.ComponentProps<typeof Column>> = ({ ...flex }) => {
+type NewsletterProps = {
+  display: boolean;
+  title: string | React.ReactNode;
+  description: string | React.ReactNode;
+  button: string | React.ReactNode;
+};
+
+export const Mailchimp: React.FC<
+  React.ComponentProps<typeof Column> & { newsletter: NewsletterProps }
+> = ({ newsletter, ...flex }) => {
   const [email, setEmail] = useState<string>("");
   const [error, setError] = useState<string>("");
   const [touched, setTouched] = useState<boolean>(false);

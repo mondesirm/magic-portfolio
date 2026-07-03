@@ -11,7 +11,7 @@ const person: Person = {
   avatar: "/images/avatar.jpg",
   email: "example@gmail.com",
   location: "Asia/Jakarta",
-  languages: ["en", "fr"],
+  languages: ["en", "id"],
   locale: "en",
 };
 

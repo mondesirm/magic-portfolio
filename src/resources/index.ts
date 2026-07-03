@@ -17,6 +17,8 @@ export {
   display,
   effects,
   fonts,
+  i18n,
+  i18nOptions,
   mailchimp,
   protectedRoutes,
   routes,
@@ -25,3 +27,5 @@ export {
   socialSharing,
   style,
 } from "./once-ui.config";
+
+export { renderContent } from "./renderContent";

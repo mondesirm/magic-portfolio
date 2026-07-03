@@ -1,12 +1,16 @@
 import Image from "next/image";
 import { ImageResponse } from "next/og";
-import { baseURL, person } from "@/resources";
+import { getTranslations } from "next-intl/server";
+import { baseURL, renderContent } from "@/resources";
 
 export const runtime = "nodejs";
 
 export async function GET(request: Request) {
   const url = new URL(request.url);
   const title = url.searchParams.get("title") || "Portfolio";
+
+  const t = await getTranslations();
+  const { person } = renderContent(t);
 
   async function loadGoogleFont(font: string) {
     const url = `https://fonts.googleapis.com/css2?family=${font}`;
