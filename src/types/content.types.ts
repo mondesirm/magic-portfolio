@@ -8,6 +8,12 @@ import type { IconName } from "@/resources/icons";
 export type IANATimeZone = Extract<keyof typeof zones, string>; // Narrow to string keys for React usage
 
 /**
+ * BCP 47 language tag (e.g., 'en', 'ja', 'zh-TW').
+ * See: https://en.wikipedia.org/wiki/IETF_language_tag
+ */
+export type Locale = Lowercase<string>
+
+/**
  * Represents a person featured in the portfolio.
  */
 export type Person = {
@@ -26,13 +32,13 @@ export type Person = {
   /** IANA time zone location */
   location: IANATimeZone;
   /** Languages spoken */
-  languages?: string[];
+  languages?: Locale[];
   /**
    * BCP 47 language tag for the HTML lang attribute (e.g., 'en', 'ja', 'zh-TW').
    * Defaults to 'en' if not set.
    * See: https://www.iana.org/assignments/language-subtag-registry
    */
-  locale?: string;
+  locale?: Locale;
 };
 
 /**
@@ -46,6 +52,8 @@ export type Newsletter = {
   title: React.ReactNode;
   /** Description of the newsletter */
   description: React.ReactNode;
+  /** Button text for the newsletter subscription */
+  button: string;
 };
 
 /**
@@ -107,6 +115,8 @@ export interface Home extends BasePageConfig {
   };
   /** The sub text which appears below the headline */
   subline: React.ReactNode;
+  /** Latest blog posts section */
+  latest: string;
 }
 
 /**
@@ -130,6 +140,8 @@ export interface About extends BasePageConfig {
   calendar: {
     /** Whether to display the calendar */
     display: boolean;
+    /** Title for the calendar section */
+    title: string;
     /** Link to the calendar */
     link: string;
   };
@@ -185,19 +197,19 @@ export interface About extends BasePageConfig {
       description: React.ReactNode;
     }>;
   };
-  /** Technical skills section */
-  technical: {
-    /** Whether to display technical skills section */
+  /** Skills section */
+  skills: {
+    /** Whether to display skills section */
     display: boolean;
-    /** Title for the technical skills section */
+    /** Title for the skills section */
     title: string;
-    /** List of technical skills */
-    skills: Array<{
-      /** Skill title */
+    /** List of skill categories */
+    categories: Array<{
+      /** Category title */
       title: string;
-      /** Skill description */
+      /** Category description */
       description?: React.ReactNode;
-      /** Skill tags */
+      /** Category tags */
       tags?: Array<{
         name: string;
         icon?: string;
@@ -218,16 +230,22 @@ export interface About extends BasePageConfig {
 }
 
 /**
- * Blog page configuration.
- * @description Configuration for the Blog page, including metadata and navigation label.
- */
-export interface Blog extends BasePageConfig {}
-
-/**
  * Work/projects page configuration.
  * @description Configuration for the Work/Projects page, including metadata and navigation label.
  */
-export interface Work extends BasePageConfig {}
+export interface Work extends BasePageConfig {
+  /** Label for the related projects section */
+  related: string;
+}
+
+/**
+ * Blog page configuration.
+ * @description Configuration for the Blog page, including metadata and navigation label.
+ */
+export interface Blog extends BasePageConfig {
+  /** Label for the recent posts section */
+  recent: string;
+}
 
 /**
  * Gallery page configuration.

@@ -12,19 +12,14 @@ import {
   Tag,
   Text,
 } from "@once-ui-system/core";
+import type { Metadata } from "next";
 import React from "react";
 import styles from "@/components/about/about.module.scss";
 import TableOfContents from "@/components/about/TableOfContents";
-import { about, baseURL, person, social } from "@/resources";
+import { about, author, baseURL, person, social } from "@/resources";
 
-export async function generateMetadata() {
-  return Meta.generate({
-    title: about.title,
-    description: about.description,
-    baseURL: baseURL,
-    image: `/api/og/generate?title=${encodeURIComponent(about.title)}`,
-    path: about.path,
-  });
+export async function generateMetadata(): Promise<Metadata> {
+  return Meta.generate({ ...about, baseURL });
 }
 
 export default function About() {
@@ -45,26 +40,16 @@ export default function About() {
       items: about.studies.institutions.map((institution) => institution.name),
     },
     {
-      title: about.technical.title,
-      display: about.technical.display,
-      items: about.technical.skills.map((skill) => skill.title),
+      title: about.skills.title,
+      display: about.skills.display,
+      items: about.skills.categories.map((category) => category.title),
     },
   ];
+
   return (
     <Column maxWidth="m">
-      <Schema
-        as="webPage"
-        baseURL={baseURL}
-        title={about.title}
-        description={about.description}
-        path={about.path}
-        image={`/api/og/generate?title=${encodeURIComponent(about.title)}`}
-        author={{
-          name: person.name,
-          url: `${baseURL}${about.path}`,
-          image: `${baseURL}${person.avatar}`,
-        }}
-      />
+      <Schema {...about} as="webPage" author={author} baseURL={baseURL} />
+
       {about.tableOfContent.display && (
         <Column
           left="0"
@@ -74,9 +59,10 @@ export default function About() {
           gap="32"
           s={{ hide: true }}
         >
-          <TableOfContents structure={structure} about={about} />
+          <TableOfContents {...{ structure, about }} />
         </Column>
       )}
+
       <Row fillWidth s={{ direction: "column" }} horizontal="center">
         {about.avatar.display && (
           <Column
@@ -94,10 +80,12 @@ export default function About() {
             horizontal="center"
           >
             <Avatar src={person.avatar} size="xl" />
+
             <Row gap="8" vertical="center">
               <Icon onBackground="accent-weak" name="globe" />
               {person.location}
             </Row>
+
             {person.languages && person.languages.length > 0 && (
               <Row wrap gap="8">
                 {person.languages.map((language) => (
@@ -109,6 +97,7 @@ export default function About() {
             )}
           </Column>
         )}
+
         <Column className={styles.blockAlign} flex={9} maxWidth={40}>
           <Column
             id={about.intro.title}
@@ -133,7 +122,8 @@ export default function About() {
                 }}
               >
                 <Icon paddingLeft="12" name="calendar" onBackground="brand-weak" />
-                <Row paddingX="8">Schedule a call</Row>
+                <Row paddingX="8">{about.calendar.title}</Row>
+
                 <IconButton
                   href={about.calendar.link}
                   data-border="rounded"
@@ -142,9 +132,11 @@ export default function About() {
                 />
               </Row>
             )}
+
             <Heading className={styles.textAlign} variant="display-strong-xl">
               {person.name}
             </Heading>
+
             <Text
               className={styles.textAlign}
               variant="display-default-xs"
@@ -152,6 +144,7 @@ export default function About() {
             >
               {person.role}
             </Text>
+
             {social.length > 0 && (
               <Row
                 className={styles.blockAlign}
@@ -180,6 +173,7 @@ export default function About() {
                               variant="secondary"
                             />
                           </Row>
+
                           <Row hide s={{ hide: false }}>
                             <IconButton
                               size="l"
@@ -207,6 +201,7 @@ export default function About() {
               <Heading as="h2" id={about.work.title} variant="display-strong-s" marginBottom="m">
                 {about.work.title}
               </Heading>
+
               <Column fillWidth gap="l" marginBottom="40">
                 {about.work.experiences.map((experience) => (
                   <Column key={`${experience.company}-${experience.role}`} fillWidth>
@@ -214,27 +209,29 @@ export default function About() {
                       <Text id={experience.company} variant="heading-strong-l">
                         {experience.company}
                       </Text>
+
                       <Text variant="heading-default-xs" onBackground="neutral-weak">
                         {experience.timeframe}
                       </Text>
                     </Row>
+
                     <Text variant="body-default-s" onBackground="brand-weak" marginBottom="m">
                       {experience.role}
                     </Text>
+
                     <Column as="ul" gap="16">
-                      {experience.achievements.map(
-                        (achievement: React.ReactNode, index: number) => (
-                          <Text
-                            as="li"
-                            variant="body-default-m"
-                            // biome-ignore lint/suspicious/noArrayIndexKey: static list
-                            key={`${experience.company}-${index}`}
-                          >
-                            {achievement}
-                          </Text>
-                        ),
-                      )}
+                      {experience.achievements.map((achievement, index) => (
+                        <Text
+                          as="li"
+                          variant="body-default-m"
+                          // biome-ignore lint/suspicious/noArrayIndexKey: static list
+                          key={`${experience.company}-${index}`}
+                        >
+                          {achievement}
+                        </Text>
+                      ))}
                     </Column>
+
                     {experience.images && experience.images.length > 0 && (
                       <Row fillWidth paddingTop="m" paddingLeft="40" gap="12" wrap>
                         {experience.images.map((image, index) => (
@@ -268,12 +265,14 @@ export default function About() {
               <Heading as="h2" id={about.studies.title} variant="display-strong-s" marginBottom="m">
                 {about.studies.title}
               </Heading>
+
               <Column fillWidth gap="l" marginBottom="40">
                 {about.studies.institutions.map((institution) => (
                   <Column key={institution.name} fillWidth gap="4">
                     <Text id={institution.name} variant="heading-strong-l">
                       {institution.name}
                     </Text>
+
                     <Text variant="heading-default-xs" onBackground="neutral-weak">
                       {institution.description}
                     </Text>
@@ -283,37 +282,36 @@ export default function About() {
             </>
           )}
 
-          {about.technical.display && (
+          {about.skills.display && (
             <>
-              <Heading
-                as="h2"
-                id={about.technical.title}
-                variant="display-strong-s"
-                marginBottom="40"
-              >
-                {about.technical.title}
+              <Heading as="h2" id={about.skills.title} variant="display-strong-s" marginBottom="40">
+                {about.skills.title}
               </Heading>
+
               <Column fillWidth gap="l">
-                {about.technical.skills.map((skill) => (
-                  <Column key={skill.title} fillWidth gap="4">
-                    <Text id={skill.title} variant="heading-strong-l">
-                      {skill.title}
+                {about.skills.categories.map((category) => (
+                  <Column key={category.title} fillWidth gap="4">
+                    <Text id={category.title} variant="heading-strong-l">
+                      {category.title}
                     </Text>
+
                     <Text variant="body-default-m" onBackground="neutral-weak">
-                      {skill.description}
+                      {category.description}
                     </Text>
-                    {skill.tags && skill.tags.length > 0 && (
+
+                    {category.tags && category.tags.length > 0 && (
                       <Row wrap gap="8" paddingTop="8">
-                        {skill.tags.map((tag) => (
-                          <Tag key={`${skill.title}-${tag.name}`} size="l" prefixIcon={tag.icon}>
+                        {category.tags.map((tag) => (
+                          <Tag key={`${category.title}-${tag.name}`} size="l" prefixIcon={tag.icon}>
                             {tag.name}
                           </Tag>
                         ))}
                       </Row>
                     )}
-                    {skill.images && skill.images.length > 0 && (
+
+                    {category.images && category.images.length > 0 && (
                       <Row fillWidth paddingTop="m" gap="12" wrap>
-                        {skill.images.map((image, index) => (
+                        {category.images.map((image, index) => (
                           <Row
                             // biome-ignore lint/suspicious/noArrayIndexKey: static list
                             key={index}

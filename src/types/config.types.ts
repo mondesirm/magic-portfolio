@@ -139,6 +139,15 @@ export type SchemaConfig = {
 };
 
 /**
+ * Author configuration for SEO/meta tags.
+ */
+export interface Author {
+  name: string;
+  url: string;
+  image: string;
+}
+
+/**
  * Social links for organization.
  */
 export type SameAsConfig = {

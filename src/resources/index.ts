@@ -11,6 +11,7 @@ export {
 } from "./content";
 
 export {
+  author,
   baseURL,
   dataStyle,
   display,

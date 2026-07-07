@@ -1,4 +1,5 @@
 import type {
+  Author,
   DataStyleConfig,
   DisplayConfig,
   EffectsConfig,
@@ -11,7 +12,7 @@ import type {
   SocialSharingConfig,
   StyleConfig,
 } from "@/types";
-import { home, person, social } from "./content";
+import { about, home, person, social } from "./content";
 
 // IMPORTANT: Replace with your own domain address - it's used for SEO in meta tags and schema
 const baseURL: string = "https://demo.magic-portfolio.com";
@@ -192,6 +193,12 @@ const schema: SchemaConfig = {
   email: person.email,
 };
 
+const author: Author = {
+  name: person.name,
+  url: `${baseURL}${about.path}`,
+  image: `${baseURL}${person.avatar}`,
+};
+
 // social links — derived from the social array in content.tsx to avoid duplication
 const sameAs: SameAsConfig = {
   threads: social.find((s) => s.name === "Threads")?.link ?? "",
@@ -216,6 +223,7 @@ const socialSharing: SocialSharingConfig = {
 };
 
 export {
+  author,
   baseURL,
   dataStyle,
   display,

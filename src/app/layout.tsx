@@ -7,29 +7,21 @@ import {
   Column,
   Flex,
   Meta,
-  type opacity,
+  type Opacity,
   RevealFx,
   type SpacingToken,
 } from "@once-ui-system/core";
 import classNames from "classnames";
+import type { Metadata } from "next";
+import type { PropsWithChildren } from "react";
 import { Footer, Header, Providers, RouteGuard } from "@/components";
 import { baseURL, dataStyle, effects, fonts, home, person, style } from "@/resources";
 
-export async function generateMetadata() {
-  return Meta.generate({
-    title: home.title,
-    description: home.description,
-    baseURL: baseURL,
-    path: home.path,
-    image: home.image,
-  });
+export async function generateMetadata(): Promise<Metadata> {
+  return Meta.generate({ ...home, baseURL });
 }
 
-export default async function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default async function RootLayout({ children }: PropsWithChildren) {
   return (
     <Flex
       suppressHydrationWarning
@@ -103,6 +95,7 @@ export default async function RootLayout({
           }}
         />
       </head>
+
       <Providers>
         <Column
           as="body"
@@ -123,7 +116,7 @@ export default async function RootLayout({
               }}
               gradient={{
                 display: effects.gradient.display,
-                opacity: effects.gradient.opacity as opacity,
+                opacity: effects.gradient.opacity as Opacity,
                 x: effects.gradient.x,
                 y: effects.gradient.y,
                 width: effects.gradient.width,
@@ -134,20 +127,20 @@ export default async function RootLayout({
               }}
               dots={{
                 display: effects.dots.display,
-                opacity: effects.dots.opacity as opacity,
+                opacity: effects.dots.opacity as Opacity,
                 size: effects.dots.size as SpacingToken,
                 color: effects.dots.color,
               }}
               grid={{
                 display: effects.grid.display,
-                opacity: effects.grid.opacity as opacity,
+                opacity: effects.grid.opacity as Opacity,
                 color: effects.grid.color,
                 width: effects.grid.width,
                 height: effects.grid.height,
               }}
               lines={{
                 display: effects.lines.display,
-                opacity: effects.lines.opacity as opacity,
+                opacity: effects.lines.opacity as Opacity,
                 size: effects.lines.size as SpacingToken,
                 thickness: effects.lines.thickness,
                 angle: effects.lines.angle,
@@ -155,13 +148,16 @@ export default async function RootLayout({
               }}
             />
           </RevealFx>
+
           <Flex fillWidth minHeight="16" s={{ hide: true }} />
           <Header />
+
           <Flex zIndex={0} fillWidth padding="l" horizontal="center" flex={1}>
             <Flex horizontal="center" fillWidth minHeight="0">
               <RouteGuard>{children}</RouteGuard>
             </Flex>
           </Flex>
+
           <Footer />
         </Column>
       </Providers>

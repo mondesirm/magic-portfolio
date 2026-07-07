@@ -84,9 +84,7 @@ const RouteGuard: React.FC<RouteGuardProps> = ({ children }) => {
     );
   }
 
-  if (!isRouteEnabled) {
-    return <NotFound />;
-  }
+  if (!isRouteEnabled) return <NotFound />;
 
   if (isPasswordRequired && !isAuthenticated) {
     return (
@@ -94,6 +92,7 @@ const RouteGuard: React.FC<RouteGuardProps> = ({ children }) => {
         <Heading align="center" wrap="balance">
           This page is password protected
         </Heading>
+
         <Column fillWidth gap="8" horizontal="center">
           <PasswordInput
             id="password"
@@ -102,6 +101,7 @@ const RouteGuard: React.FC<RouteGuardProps> = ({ children }) => {
             onChange={(e) => setPassword(e.target.value)}
             errorMessage={error}
           />
+
           <Button onClick={handlePasswordSubmit}>Submit</Button>
         </Column>
       </Column>

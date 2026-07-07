@@ -1,33 +1,16 @@
 import { Flex, Meta, Schema } from "@once-ui-system/core";
+import type { Metadata } from "next";
 import GalleryView from "@/components/gallery/GalleryView";
-import { baseURL, gallery, person } from "@/resources";
+import { author, baseURL, gallery } from "@/resources";
 
-export async function generateMetadata() {
-  return Meta.generate({
-    title: gallery.title,
-    description: gallery.description,
-    baseURL: baseURL,
-    image: `/api/og/generate?title=${encodeURIComponent(gallery.title)}`,
-    path: gallery.path,
-  });
+export async function generateMetadata(): Promise<Metadata> {
+  return Meta.generate({ ...gallery, baseURL });
 }
 
 export default function Gallery() {
   return (
     <Flex maxWidth="l">
-      <Schema
-        as="webPage"
-        baseURL={baseURL}
-        title={gallery.title}
-        description={gallery.description}
-        path={gallery.path}
-        image={`/api/og/generate?title=${encodeURIComponent(gallery.title)}`}
-        author={{
-          name: person.name,
-          url: `${baseURL}${gallery.path}`,
-          image: `${baseURL}${person.avatar}`,
-        }}
-      />
+      <Schema {...gallery} as="webPage" author={author} baseURL={baseURL} />
       <GalleryView />
     </Flex>
   );

@@ -1,12 +1,9 @@
 import mdx from "@next/mdx";
+import type { NextConfig } from "next";
 
-const withMDX = mdx({
-  extension: /\.mdx?$/,
-  options: {},
-});
+const withMDX = mdx({ extension: /\.mdx?$/, options: {} });
 
-/** @type {import('next').NextConfig} */
-const nextConfig = {
+const nextConfig: NextConfig = {
   pageExtensions: ["ts", "tsx", "md", "mdx"],
   transpilePackages: ["next-mdx-remote"],
   images: {

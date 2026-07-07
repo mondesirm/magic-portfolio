@@ -4,19 +4,22 @@ import type { About, Blog, Gallery, Home, Newsletter, Person, Social, Work } fro
 const person: Person = {
   firstName: "Selene",
   lastName: "Yu",
-  name: `Selene Yu`,
+  get name() {
+    return `${this.firstName} ${this.lastName}`;
+  },
   role: "Design Engineer",
   avatar: "/images/avatar.jpg",
   email: "example@gmail.com",
-  location: "Asia/Jakarta", // Expecting the IANA time zone identifier, e.g., 'Europe/Vienna'
-  languages: ["English", "Bahasa"], // optional: Leave the array empty if you don't want to display languages
-  locale: "en", // BCP 47 language tag for the HTML lang attribute, e.g., 'en', 'ja', 'zh-TW'
+  location: "Asia/Jakarta",
+  languages: ["en", "fr"],
+  locale: "en",
 };
 
 const newsletter: Newsletter = {
   display: true,
   title: <>Subscribe to {person.firstName}'s Newsletter</>,
   description: <>My weekly newsletter about creativity and engineering</>,
+  button: "Subscribe",
 };
 
 const social: Social = [
@@ -68,6 +71,7 @@ const home: Home = {
       <Row gap="12" vertical="center">
         <strong className="ml-4">Once UI</strong>{" "}
         <Line background="brand-alpha-strong" vert height="20" />
+
         <Text marginRight="4" onBackground="brand-medium">
           Featured work
         </Text>
@@ -84,13 +88,17 @@ const home: Home = {
       , where I craft intuitive <br /> user experiences. After hours, I build my own projects.
     </>
   ),
+  latest: "Latest from the blog",
 };
 
 const about: About = {
   path: "/about",
+  get image() {
+    return `/api/og/generate?title=${encodeURIComponent(this.title)}`;
+  },
   label: "About",
-  title: `About – ${person.name}`,
-  description: `Meet ${person.name}, ${person.role} from ${person.location}`,
+  title: `About ${person.name}`,
+  description: `Meet ${person.name}, ${person.role} from ${person.location.split("/")[1]?.replace("_", " ")}`,
   tableOfContent: {
     display: true,
     subItems: false,
@@ -100,6 +108,7 @@ const about: About = {
   },
   calendar: {
     display: true,
+    title: "Schedule a call",
     link: "https://cal.com",
   },
   intro: {
@@ -174,10 +183,10 @@ const about: About = {
       },
     ],
   },
-  technical: {
+  skills: {
     display: true, // set to false to hide this section
-    title: "Technical skills",
-    skills: [
+    title: "Skills",
+    categories: [
       {
         title: "Figma",
         description: <>Able to prototype in Figma with Once UI with unnatural speed.</>,
@@ -234,26 +243,37 @@ const about: About = {
   },
 };
 
-const blog: Blog = {
-  path: "/blog",
-  label: "Blog",
-  title: "Writing about design and tech...",
-  description: `Read what ${person.name} has been up to recently`,
-  // Create new blog posts by adding a new .mdx file to app/blog/posts
-  // All posts will be listed on the /blog route
-};
-
 const work: Work = {
   path: "/work",
+  get image() {
+    return `/api/og/generate?title=${encodeURIComponent(this.title)}`;
+  },
   label: "Work",
-  title: `Projects – ${person.name}`,
+  title: `${person.name}'s Projects`,
   description: `Design and dev projects by ${person.name}`,
+  related: "Related projects",
   // Create new project pages by adding a new .mdx file to app/blog/posts
   // All projects will be listed on the /home and /work routes
 };
 
+const blog: Blog = {
+  path: "/blog",
+  get image() {
+    return `/api/og/generate?title=${encodeURIComponent(this.title)}`;
+  },
+  label: "Blog",
+  title: `${person.name}'s Blog`,
+  description: `Read what ${person.name} has been up to recently`,
+  recent: "Recent posts",
+  // Create new blog posts by adding a new .mdx file to app/blog/posts
+  // All posts will be listed on the /blog route
+};
+
 const gallery: Gallery = {
   path: "/gallery",
+  get image() {
+    return `/api/og/generate?title=${encodeURIComponent(this.title)}`;
+  },
   label: "Gallery",
   title: `Photo gallery – ${person.name}`,
   description: `A photo collection by ${person.name}`,

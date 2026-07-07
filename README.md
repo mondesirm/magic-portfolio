@@ -10,27 +10,27 @@ View the demo [here](https://demo.magic-portfolio.com).
 
 **1. Clone the repository**
 ```
-git clone https://github.com/once-ui-system/magic-portfolio.git
+git clone https://github.com/mondesirm/magic-portfolio.git
 ```
 
 **2. Install dependencies**
 ```
-npm install
+pnpm install
 ```
 
 **3. Run dev server**
 ```
-npm run dev
+pnpm run dev
 ```
 
 **4. Edit config**
 ```
-src/resources/once-ui.config.js
+src/resources/once-ui.config.ts
 ```
 
 **5. Edit content**
 ```
-src/resources/content.js
+src/resources/content.ts
 ```
 
 **6. Create blog posts / projects**
@@ -65,8 +65,8 @@ Docs available at: [docs.once-ui.com](https://docs.once-ui.com/docs/magic-portfo
 - Set up password protection for URLs
 
 ### Localization
-- A localized, earlier version of Magic Portfolio is available with the next-intl library
-- To use localization, switch to the 'i18n' branch
+- A localized version of this template is available with the `next-intl` library
+- To use localization, switch to the `i18n` branch
 
 ## Creators
 
@@ -88,4 +88,4 @@ See `LICENSE.txt` for more information.
 
 ## Deploy with Vercel
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fonce-ui-system%2Fmagic-portfolio&project-name=portfolio&repository-name=portfolio&redirect-url=https%3A%2F%2Fgithub.com%2Fonce-ui-system%2Fmagic-portfolio&demo-title=Magic%20Portfolio&demo-description=Showcase%20your%20designers%20or%20developer%20portfolio&demo-url=https%3A%2F%2Fdemo.magic-portfolio.com&demo-image=%2F%2Fraw.githubusercontent.com%2Fonce-ui-system%2Fmagic-portfolio%2Fmain%2Fpublic%2Fimages%2Fog%2Fhome.jpg)
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fmondesirm%2Fmagic-portfolio&project-name=portfolio&repository-name=portfolio&redirect-url=https%3A%2F%2Fgithub.com%2Fmondesirm%2Fmagic-portfolio&demo-title=Magic%20Portfolio&demo-description=Showcase%20your%20designers%20or%20developer%20portfolio&demo-url=https%3A%2F%2Fdemo.magic-portfolio.com&demo-image=%2F%2Fraw.githubusercontent.com%2Fmondesirm%2Fmagic-portfolio%2Fmain%2Fpublic%2Fimages%2Fog%2Fhome.jpg)
