@@ -15,7 +15,7 @@ import classNames from "classnames";
 import type { Metadata } from "next";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages, getTranslations, setRequestLocale } from "next-intl/server";
-import type { PropsWithChildren } from "react";
+// import type { PropsWithChildren } from "react";
 import { Footer, Header, Providers, RouteGuard } from "@/components";
 import { routing } from "@/i18n/routing";
 import { baseURL, dataStyle, effects, fonts, person, renderContent, style } from "@/resources";
@@ -33,9 +33,15 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   return Meta.generate({ ...home, baseURL: `${baseURL}/${locale}` });
 }
 
-type RootLayoutProps = PageProps & PropsWithChildren;
+// type RootLayoutProps = PageProps & PropsWithChildren;
 
-export default async function RootLayout({ params, children }: RootLayoutProps) {
+export default async function RootLayout({
+  params,
+  children,
+}: {
+  children: React.ReactNode;
+  params: Promise<{ locale: string }>;
+}) {
   const { locale } = await params;
   setRequestLocale(locale);
   const messages = await getMessages();
