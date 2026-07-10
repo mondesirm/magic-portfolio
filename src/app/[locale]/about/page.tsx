@@ -13,7 +13,7 @@ import {
   Text,
 } from "@once-ui-system/core";
 import type { Metadata } from "next";
-import { getTranslations, setRequestLocale } from "next-intl/server";
+import { getFormatter, getTranslations, setRequestLocale } from "next-intl/server";
 import React from "react";
 import styles from "@/components/about/about.module.scss";
 import TableOfContents from "@/components/about/TableOfContents";
@@ -31,6 +31,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 export default async function About({ params }: PageProps) {
   const { locale } = await params;
   setRequestLocale(locale);
+  const format = await getFormatter();
   const t = await getTranslations();
   const { about, person, social } = renderContent(t);
 
@@ -109,7 +110,7 @@ export default async function About({ params }: PageProps) {
               <Row wrap gap="8">
                 {person.languages.map((language) => (
                   <Tag key={language} size="l">
-                    {language}
+                    {format.displayName(language, { type: "language" })}
                   </Tag>
                 ))}
               </Row>

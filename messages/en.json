@@ -4,89 +4,122 @@
     "description": "The page you are looking for does not exist."
   },
   "person": {
-    "role": "Design Engineer"
+    "role": "Web Engineer"
   },
   "newsletter": {
-    "title": "Subscribe to {firstName}'s Newsletter",
-    "description": "I occasionally write about design, technology, and share thoughts on the intersection of creativity and engineering",
+    "title": "Subscribe to {firstName}'s newsletter",
+    "description": "My weekly newsletter about creativity and engineering.",
     "button": "Sign up"
   },
   "home": {
     "label": "Home",
     "title": "{name}'s Portfolio",
     "description": "Portfolio website showcasing my work as a {role}",
-    "headline": "Design engineer and builder",
+    "headline": "Streamlining Repetitive Tasks",
     "featured": {
-      "title": "Once UI",
+      "title": "Mix Massage Art",
       "subtitle": "Featured work"
     },
-    "subline": "I'm Selene, a design engineer at FLY, where I craft intuitive user experiences. After hours, I build my own projects.",
+    "subline": "I'm {firstName}, {role} in the suburbs of Paris,<br></br>specializing in <b>Business Process Automation</b><br></br>and the digitalization of businesses.",
     "latest": "Latest from the blog"
   },
   "about": {
     "label": "About",
-    "title": "About me",
+    "title": "About {name}",
     "description": "Meet {name}, {role} from {location}",
     "calendar": {
       "title": "Schedule a call"
     },
     "intro": {
       "title": "Introduction",
-      "description": "Selene is a Jakarta-based design engineer with a passion for transforming complex challenges into simple, elegant design solutions. Her work spans digital interfaces, interactive experiences, and the convergence of design and technology."
+      "description": "{firstName} is a {location}-based {role}, with a passion for integrating digital tools into business processes. His work covers Web and mobile application design, automation, and website creation for small businesses."
     },
     "work": {
       "title": "Work Experience",
-      "experiences": {
-        "FLY": {
-          "timeframe": "2022 - Present",
-          "role": "Senior Design Engineer",
-          "achievements": "Redesigned the UI/UX for the FLY platform, resulting in a 20% increase in user engagement and 30% faster load times.;Spearheaded the integration of AI tools into design workflows, enabling designers to iterate 50% faster."
+      "experiences": [
+        {
+          "timeframe": "August 2023 → Present",
+          "role": "Self-employed / Webmaster",
+          "achievements": [
+            "Redesign of my portfolio website (v2) and ongoing development of a CRM",
+            "Welcoming an intern and rebranding a company in the wellness sector",
+            "2 websites in the wellness sector, one of which is for an association for the visually impaired",
+            "3 others in pest control and cleaning, one of which is an e-commerce site",
+            "Digitalization of a new company specializing in general electrical work and home automation"
+          ]
         },
-        "Creativ3": {
-          "timeframe": "2018 - 2022",
-          "role": "Lead Designer",
-          "achievements": "Developed a design system that unified the brand across multiple platforms, improving design consistency by 40%.;Led a cross-functional team to launch a new product line, contributing to a 15% increase in overall company revenue."
+        {
+          "timeframe": "September 2021 → June 2023",
+          "role": "Technical Manager / Automation",
+          "achievements": [
+            "Promotion to team lead and onboarding of new hires",
+            "Handling client projects (direct contact and appointment scheduling)",
+            "Redesign and integration of <b>WooCommerce</b> for <b>ProfilPlus Fabricant</b>",
+            "Partnership request forms for <b>Service Limo Car</b> with <b>Zoho</b>",
+            "Automation of business processes for clients and internal use (<b>Zapier</b> and <b>Zoho</b>) :",
+            "Daily synchronization of a customer database across two CRMs",
+            "Sending emails with employee rankings based on call activity (API)"
+          ]
+        },
+        {
+          "timeframe": "April 2021 → September 2021",
+          "role": "Web and Mobile Application Designer",
+          "achievements": [
+            "One site migration from <b>CakePHP</b> to <b>Laravel</b>",
+            "One application developed with <b>React Native</b>, <b>Expo</b> and <b>Firebase</b>: <b>GMA Adequa</b>",
+            "Three websites developed with <b>Laravel</b>: <b>GMA Adequa</b>, <b>Rentor</b> et <b>Triber</b>",
+            "Two websites developed with <b>WordPress</b>: <b>Vizio</b> et <b>Hackers Corporation</b>"
+          ]
+        },
+        {
+          "timeframe": "January 2020 → August 2020",
+          "role": "Office Support Technician Assistant",
+          "achievements": [
+            "Automation using <b>JavaScript</b> and <b>PowerShell</b> for IT asset warranty",
+            "Managing <b>Active Directory</b> accounts across the company's 8 sites",
+            "Configuring mailboxes, <b>MS Exchange</b> distribution lists and <b>MS SharePoint</b> sites"
+          ]
         }
-      }
+      ]
     },
     "studies": {
       "title": "Studies",
-      "institutions": {
-        "University of Jakarta": {
-          "description": "Studied software engineering."
+      "institutions": [
+        {
+          "description": "Full Stack Development / Real-Time Applications / DevOps Engineering"
         },
-        "Build the Future": {
-          "description": "Studied online marketing and personal branding."
+        {
+          "description": "Controlling a 3D-printed robotic hand via an <b>Android</b> app, <b>Bluetooth</b>, or muscle activity sensors: logic developed with <b>Arduino</b>"
         }
-      }
+      ]
     },
     "skills": {
       "title": "Skills",
-      "categories": {
-        "Figma": {
-          "description": "Able to prototype in Figma with Once UI with unnatural speed."
-        },
-        "Nextjs": {
-          "description": "Building next gen apps with Next.js + Once UI + Supabase."
-        }
+      "technical": {
+        "title": "Technical",
+        "description": "Digital solutions with <b>Next.js</b> + <b>React</b> / <b>WordPress</b> + <b>Anime.js</b>."
+      },
+      "visual": {
+        "title": "Visual",
+        "description": "<b>Canva</b> (logotypes / moodboards / prototypes) and <b>Figma</b> (wireframes / mobile application mockups)"
       }
     }
   },
   "work": {
     "label": "Work",
-    "title": "My projects",
+    "title": "{name}'s Projects",
     "description": "Design and dev projects by {name}",
     "related": "Related projects"
   },
   "blog": {
     "label": "Blog",
-    "title": "Writing about design and tech...",
+    "title": "{name}'s Blog",
     "description": "Read what {name} has been up to recently",
     "recent": "Recent posts"
   },
   "gallery": {
     "label": "Gallery",
-    "title": "My photo gallery",
+    "title": "{name}'s Photo Gallery",
     "description": "A photo collection by {name}"
   },
   "projectCard": {

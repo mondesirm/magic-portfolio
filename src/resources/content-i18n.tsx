@@ -1,19 +1,20 @@
 import { Line, Row, Text } from "@once-ui-system/core";
 import type { getTranslations } from "next-intl/server";
+import { RichText } from "@/components/RichText";
 import type { About, Blog, Gallery, Home, Newsletter, Person, Social, Work } from "@/types";
 
 const createI18nContent = (t: Awaited<ReturnType<typeof getTranslations>>) => {
   const person: Person = {
-    firstName: "Selene",
-    lastName: "Yu",
+    firstName: "Malik",
+    lastName: "MONDESIR",
     get name() {
       return `${this.firstName} ${this.lastName}`;
     },
     role: t("person.role"),
     avatar: "/images/avatar.jpg",
-    email: "example@gmail.com",
-    location: "Asia/Jakarta", // Expecting the IANA time zone identifier, e.g., 'Europe/Vienna'
-    languages: ["en", "id"], // optional: Leave the array empty if you don't want to display languages
+    email: "contact@mondesirm.me",
+    location: "Europe/Paris", // Expecting the IANA time zone identifier, e.g., 'Europe/Vienna'
+    languages: ["en", "fr"], // optional: Leave the array empty if you don't want to display languages
     locale: "en", // BCP 47 language tag for the HTML lang attribute, e.g., 'en', 'ja', 'zh-TW'
   };
 
@@ -31,25 +32,13 @@ const createI18nContent = (t: Awaited<ReturnType<typeof getTranslations>>) => {
     {
       name: "GitHub",
       icon: "github",
-      link: "https://github.com/once-ui-system",
+      link: "https://github.com/mondesirm",
       essential: true,
     },
     {
       name: "LinkedIn",
       icon: "linkedin",
-      link: "https://www.linkedin.com/company/once-ui/",
-      essential: true,
-    },
-    {
-      name: "Instagram",
-      icon: "instagram",
-      link: "https://www.instagram.com/once_ui/",
-      essential: false,
-    },
-    {
-      name: "Threads",
-      icon: "threads",
-      link: "https://www.threads.com/@once_ui",
+      link: "https://linkedin.com/in/mondesirm",
       essential: true,
     },
     {
@@ -66,7 +55,7 @@ const createI18nContent = (t: Awaited<ReturnType<typeof getTranslations>>) => {
     label: t("home.label"),
     title: t("home.title", { name: person.name }),
     description: t("home.description", { role: person.role }),
-    headline: <>{t("home.headline")}</>,
+    headline: <RichText>{(tags) => t.rich("home.headline", tags)}</RichText>,
     featured: {
       display: true,
       title: (
@@ -78,9 +67,15 @@ const createI18nContent = (t: Awaited<ReturnType<typeof getTranslations>>) => {
           </Text>
         </Row>
       ),
-      href: "/work/building-once-ui-a-customizable-design-system",
+      href: "/work/mixmassage.art",
     },
-    subline: <>{t("home.subline")}</>,
+    subline: (
+      <RichText>
+        {(tags) =>
+          t.rich("home.subline", { ...tags, firstName: person.firstName, role: person.role })
+        }
+      </RichText>
+    ),
     latest: t("home.latest"),
   };
 
@@ -90,11 +85,11 @@ const createI18nContent = (t: Awaited<ReturnType<typeof getTranslations>>) => {
       return `/api/og/generate?title=${encodeURIComponent(this.title)}`;
     },
     label: t("about.label"),
-    title: t("about.title"),
+    title: t("about.title", { name: person.name }),
     description: t("about.description", {
       name: person.name,
       role: person.role,
-      location: person.location,
+      location: person.location.split("/")[1]?.replace("_", " "),
     }),
     tableOfContent: {
       display: true,
@@ -106,37 +101,82 @@ const createI18nContent = (t: Awaited<ReturnType<typeof getTranslations>>) => {
     calendar: {
       display: true,
       title: t("about.calendar.title"),
-      link: "https://cal.com",
+      link: "https://cal.eu/mondesirm",
     },
     intro: {
       display: true,
       title: t("about.intro.title"),
-      description: <>{t("about.intro.description")}</>,
+      description: (
+        <RichText>
+          {(tags) =>
+            t.rich("about.intro.description", {
+              ...tags,
+              firstName: person.firstName,
+              location: person.location.split("/")[1]?.replace("_", " "),
+              role: person.role,
+            })
+          }
+        </RichText>
+      ),
     },
     work: {
       display: true, // set to false to hide this section
       title: t("about.work.title"),
       experiences: [
         {
-          company: "FLY",
-          timeframe: t("about.work.experiences.FLY.timeframe"),
-          role: t("about.work.experiences.FLY.role"),
-          achievements: t("about.work.experiences.FLY.achievements").split(";"),
+          company: "MALIK MONDESIR (EI) · Drancy (93)",
+          timeframe: t("about.work.experiences.0.timeframe"),
+          role: t("about.work.experiences.0.role"),
+          achievements: Array.from({ length: 5 }, (_, index) => (
+            // biome-ignore lint/suspicious/noArrayIndexKey: static list
+            <RichText key={index}>
+              {(tags) => t.rich(`about.work.experiences.0.achievements.${index}`, tags)}
+            </RichText>
+          )),
           images: [
             // optional: leave the array empty if you don't want to display images
             {
-              src: "/images/projects/project-01/cover-01.jpg",
-              alt: "Once UI Project",
-              width: 16,
-              height: 9,
+              src: "/images/projects/mixmassage.art/logo.png",
+              alt: "Mix Massage Art",
+              width: 3,
+              height: 3,
             },
           ],
         },
         {
-          company: "Creativ3",
-          timeframe: t("about.work.experiences.Creativ3.timeframe"),
-          role: t("about.work.experiences.Creativ3.role"),
-          achievements: t("about.work.experiences.Creativ3.achievements").split(";"),
+          company: "Business Evasion · Paris 12e",
+          timeframe: t("about.work.experiences.1.timeframe"),
+          role: t("about.work.experiences.1.role"),
+          achievements: Array.from({ length: 7 }, (_, index) => (
+            // biome-ignore lint/suspicious/noArrayIndexKey: static list
+            <RichText key={index}>
+              {(tags) => t.rich(`about.work.experiences.1.achievements.${index}`, tags)}
+            </RichText>
+          )),
+          images: [],
+        },
+        {
+          company: "Hackers Corporation · Paris 12e",
+          timeframe: t("about.work.experiences.2.timeframe"),
+          role: t("about.work.experiences.2.role"),
+          achievements: Array.from({ length: 4 }, (_, index) => (
+            // biome-ignore lint/suspicious/noArrayIndexKey: static list
+            <RichText key={index}>
+              {(tags) => t.rich(`about.work.experiences.2.achievements.${index}`, tags)}
+            </RichText>
+          )),
+          images: [],
+        },
+        {
+          company: "Hub One · Roissy Charles de Gaulle",
+          timeframe: t("about.work.experiences.3.timeframe"),
+          role: t("about.work.experiences.3.role"),
+          achievements: Array.from({ length: 3 }, (_, index) => (
+            // biome-ignore lint/suspicious/noArrayIndexKey: static list
+            <RichText key={index}>
+              {(tags) => t.rich(`about.work.experiences.3.achievements.${index}`, tags)}
+            </RichText>
+          )),
           images: [],
         },
       ],
@@ -146,12 +186,20 @@ const createI18nContent = (t: Awaited<ReturnType<typeof getTranslations>>) => {
       title: t("about.studies.title"),
       institutions: [
         {
-          name: "University of Jakarta",
-          description: <>{t(`about.studies.institutions.University of Jakarta.description`)}</>,
+          name: "École Supérieure du Génie Informatique",
+          description: (
+            <RichText>
+              {(tags) => t.rich("about.studies.institutions.0.description", tags)}
+            </RichText>
+          ),
         },
         {
-          name: "Build the Future",
-          description: <>{t("about.studies.institutions.Build the Future.description")}</>,
+          name: "Lycée et UFA Robert Schuman",
+          description: (
+            <RichText>
+              {(tags) => t.rich("about.studies.institutions.1.description", tags)}
+            </RichText>
+          ),
         },
       ],
     },
@@ -160,52 +208,32 @@ const createI18nContent = (t: Awaited<ReturnType<typeof getTranslations>>) => {
       title: t("about.skills.title"),
       categories: [
         {
-          title: "Figma",
-          description: <>{t("about.skills.categories.Figma.description")}</>,
+          title: t("about.skills.technical.title"),
+          description: (
+            <RichText>{(tags) => t.rich("about.skills.technical.description", tags)}</RichText>
+          ),
           tags: [
-            {
-              name: "Figma",
-              icon: "figma",
-            },
+            { name: "TypeScript", icon: "typescript" },
+            { name: "Next.js", icon: "nextjs" },
+            { name: "Prisma", icon: "prisma" },
           ],
           // optional: leave the array empty if you don't want to display images
-          images: [
-            {
-              src: "/images/projects/project-01/cover-02.jpg",
-              alt: "Project image",
-              width: 16,
-              height: 9,
-            },
-            {
-              src: "/images/projects/project-01/cover-03.jpg",
-              alt: "Project image",
-              width: 16,
-              height: 9,
-            },
-          ],
+          images: [],
         },
         {
-          title: "Next.js",
-          description: <>{t("about.skills.categories.Nextjs.description")}</>, // "." not accepted in next-intl namespace
+          title: t("about.skills.visual.title"),
+          description: (
+            <RichText>{(tags) => t.rich("about.skills.visual.description", tags)}</RichText>
+          ), // "." not accepted in next-intl namespace
           tags: [
-            {
-              name: "JavaScript",
-              icon: "javascript",
-            },
-            {
-              name: "Next.js",
-              icon: "nextjs",
-            },
-            {
-              name: "Supabase",
-              icon: "supabase",
-            },
+            { name: "Canva", icon: "canva" },
+            { name: "Figma", icon: "figma" },
           ],
           // optional: leave the array empty if you don't want to display images
           images: [
             {
-              src: "/images/projects/project-01/cover-04.jpg",
-              alt: "Project image",
+              src: "/images/projects/mixmassage.art/cover.gif",
+              alt: "Mix Massage Art",
               width: 16,
               height: 9,
             },
@@ -234,7 +262,7 @@ const createI18nContent = (t: Awaited<ReturnType<typeof getTranslations>>) => {
       return `/api/og/generate?title=${encodeURIComponent(this.title)}`;
     },
     label: t("blog.label"),
-    title: t("blog.title"),
+    title: t("blog.title", { name: person.name }),
     description: t("blog.description", { name: person.name }),
     recent: t("blog.recent"),
     // Create new blog posts by adding a new .mdx file to app/[locale]/blog/posts
@@ -252,46 +280,14 @@ const createI18nContent = (t: Awaited<ReturnType<typeof getTranslations>>) => {
     // Images by https://lorant.one
     // These are placeholder images, replace with your own
     images: [
-      {
-        src: "/images/gallery/horizontal-1.jpg",
-        alt: "image",
-        orientation: "horizontal",
-      },
-      {
-        src: "/images/gallery/vertical-4.jpg",
-        alt: "image",
-        orientation: "vertical",
-      },
-      {
-        src: "/images/gallery/horizontal-3.jpg",
-        alt: "image",
-        orientation: "horizontal",
-      },
-      {
-        src: "/images/gallery/vertical-1.jpg",
-        alt: "image",
-        orientation: "vertical",
-      },
-      {
-        src: "/images/gallery/vertical-2.jpg",
-        alt: "image",
-        orientation: "vertical",
-      },
-      {
-        src: "/images/gallery/horizontal-2.jpg",
-        alt: "image",
-        orientation: "horizontal",
-      },
-      {
-        src: "/images/gallery/horizontal-4.jpg",
-        alt: "image",
-        orientation: "horizontal",
-      },
-      {
-        src: "/images/gallery/vertical-3.jpg",
-        alt: "image",
-        orientation: "vertical",
-      },
+      { src: "/images/gallery/horizontal-1.jpg", alt: "image", orientation: "horizontal" },
+      { src: "/images/gallery/vertical-4.jpg", alt: "image", orientation: "vertical" },
+      { src: "/images/gallery/horizontal-3.jpg", alt: "image", orientation: "horizontal" },
+      { src: "/images/gallery/vertical-1.jpg", alt: "image", orientation: "vertical" },
+      { src: "/images/gallery/vertical-2.jpg", alt: "image", orientation: "vertical" },
+      { src: "/images/gallery/horizontal-2.jpg", alt: "image", orientation: "horizontal" },
+      { src: "/images/gallery/horizontal-4.jpg", alt: "image", orientation: "horizontal" },
+      { src: "/images/gallery/vertical-3.jpg", alt: "image", orientation: "vertical" },
     ],
   };
 

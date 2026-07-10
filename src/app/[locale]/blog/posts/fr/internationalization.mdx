@@ -1,0 +1,68 @@
+---
+title: "Internationalisation de mon portfolio et de son modèle"
+summary: "Mon portfolio est désormais disponible en anglais et en français. Utilisez le sélecteur de langue en haut à droite pour changer de langue."
+publishedAt: "2026-07-09"
+tag: "i18n"
+---
+
+Mon portfolio est désormais disponible en anglais et en français. Utilisez le sélecteur de langue en haut à droite pour changer de langue.
+
+<details>
+<summary><strong>Qu'est-ce que l'internationalisation ?</strong></summary>
+
+L'internationalisation (souvent abrégée en i18n) est le processus de conception et de développement d'un produit, d'une application ou d'un site web permettant son adaptation aisée à différentes langues et régions sans nécessiter de modifications importantes du code source. Le terme « i18n » provient du fait qu'il y a 18 lettres entre le « i » et le « n » dans le mot « internationalisation ».
+
+</details>
+
+---
+
+## Pourquoi et comment j'ai implémenté l'internationalisation
+
+J'utilise à la fois l'anglais et le français au quotidien, donc je voulais rendre mon portfolio accessible à un public plus large. Pour y parvenir, j'ai décidé d'implémenter l'internationalisation en utilisant la librairie `next-intl`. Cette bibliothèque offre un moyen simple et efficace de gérer les traductions et la gestion des paramètres régionaux dans les applications Next.js.
+
+J'ai remarqué que l'internationalisation avait été abandonnée du modèle original, je l'ai donc rajoutée puis je l'ai fusionnée avec toutes les modifications personnalisées que j'avais déjà apportées à mon portfolio.
+
+## Utilisez-le comme référence pour votre propre site portfolio
+
+Si vous souhaitez explorer la version du modèle que j'ai mise à jour et adaptée pour la prise en charge multilingue, vous pouvez utiliser la [branche `i18n`](https://github.com/mondesirm/magic-portfolio/tree/i18n) comme point de départ pour votre propre portfolio.
+
+<Table
+  data={{
+    headers: [
+      { content: "Branche", key: "branche" },
+      { content: "Description", key: "description" },
+    ],
+    rows: [
+      [<a href="https://github.com/mondesirm/magic-portfolio/tree/main"><code>main</code></a>, <>Le modèle original.</>],
+      [<a href="https://github.com/mondesirm/magic-portfolio/tree/i18n"><code>develop</code></a>, <>Ma version modifiée personnalisée.</>],
+      [<a href="https://github.com/mondesirm/magic-portfolio/tree/i18n"><code>i18n</code></a>, <>Ma version modifiée personnalisée avec internationalisation.</>],
+      [<a href="https://github.com/mondesirm/magic-portfolio/tree/i18n"><code>vercel</code></a>, <>Mon portfolio déployé sur Vercel.</>],
+    ],
+  }}
+/>
+
+Si vous souhaitez n'afficher qu'une seule langue pour le moment, vous pouvez soit définir la variable `i18n` dans `src/resources/once-ui.config.ts` sur la langue souhaitée, soit utiliser la branche `develop`, qui est ma version modifiée du modèle sans internationalisation. La première option vous permettra de vous concentrer sur une seule langue tout en conservant la possibilité d'en ajouter d'autres ultérieurement.
+
+---
+
+<Feedback
+  title="Information"
+  description="Si vous avez dupliqué mon dépôt GitHub, vous devrez effectuer les modifications suivantes."
+/>
+
+<Table
+  data={{
+    headers: [
+      { content: "Fichier", key: "fichier" },
+      { content: "Instruction", key: "instruction" },
+    ],
+    rows: [
+      [<code>messages/&lt;locale&gt;.json</code>, <>Utilisez vos propres <a href="https://next-intl.dev/docs/usage/translations">traductions</a>.</>],
+      [<code>src/proxy.ts</code>, <>Remplacez <code>(en|fr)</code> par toutes les langues souhaitées délimitées par une barre verticale <code>|</code> (<a href="https://next-intl.dev/docs/routing/middleware">voir plus</a>).</>],
+      [<><code>src/resources/content.tsx</code><code>src/resources/content-i18n.tsx</code></>, <>Mettez à jour <code>person.languages</code> avec les langues souhaitées.</>],
+      [<code>src/resources/once-ui.config.ts</code>, <>Mettez à jour <code>i18nOptions</code> avec les langues souhaitées. Si vous avez plus de deux langues, vous devrez mettre à jour le sélecteur de langue pour qu'il ne chevauche pas l'en-tête du site.</>],
+      [<code>src/i18n/routing.ts</code>, <>Mettez à jour <code>routing.pathnames</code> avec les <a href="https://next-intl.dev/docs/routing/configuration#pathnames">noms de chemins localisés</a>.</>],
+      [<><code>src/app/[locale]/blog/posts/&lt;locale&gt;/*.mdx</code><code>src/app/[locale]/work/projects/&lt;locale&gt;/*.mdx</code></>, <>Remplacez <code>&lt;locale&gt;</code> par la langue souhaitée. Créez un dossier pour chaque langue que vous souhaitez prendre en charge.</>],
+    ],
+  }}
+/>

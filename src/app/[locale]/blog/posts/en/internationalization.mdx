@@ -1,0 +1,68 @@
+---
+title: "Internationalization of my portfolio and its template"
+summary: "My portfolio is now available in English and French. Use the language selector in the top-right corner to switch languages."
+publishedAt: "2026-07-09"
+tag: "i18n"
+---
+
+My portfolio is now available in English and French. Use the language selector in the top-right corner to switch languages.
+
+<details>
+<summary><strong>What is internationalization?</strong></summary>
+
+Internationalization (often abbreviated as i18n) is the process of designing and developing a product, application, or website in a way that allows it to be easily adapted for different languages and regions without requiring significant changes to the underlying codebase. The term "i18n" comes from the fact that there are 18 letters between the first letter "i" and the last letter "n" in the word "internationalization."
+
+</details>
+
+---
+
+## Why and how I implemented internationalization
+
+I use both English and French daily, so I wanted to make my portfolio accessible to a wider audience. To achieve this, I decided to implement internationalization using the `next-intl` library. This library provides a simple and efficient way to handle translations and locale management in Next.js applications.
+
+I noticed internationalization was dropped on the original template, so I added it back and then merged it with all the custom modifications I had already made to my portfolio.
+
+## Use it as a reference for your own portfolio site
+
+If you want to explore the version of the template I updated and adapted for multilingual support, you can use the [`i18n` branch](https://github.com/mondesirm/magic-portfolio/tree/i18n) as a starting point for your own portfolio.
+
+<Table
+  data={{
+    headers: [
+      { content: "Branch", key: "branch" },
+      { content: "Description", key: "description" },
+    ],
+    rows: [
+      [<a href="https://github.com/mondesirm/magic-portfolio/tree/main"><code>main</code></a>, <>The original template.</>],
+      [<a href="https://github.com/mondesirm/magic-portfolio/tree/i18n"><code>develop</code></a>, <>My custom modified version.</>],
+      [<a href="https://github.com/mondesirm/magic-portfolio/tree/i18n"><code>i18n</code></a>, <>My custom modified version with internationalization.</>],
+      [<a href="https://github.com/mondesirm/magic-portfolio/tree/i18n"><code>vercel</code></a>, <>My portfolio deployed on Vercel.</>],
+    ],
+  }}
+/>
+
+If you want to show only one language for now, you can either set the `i18n` variable in `src/resources/once-ui.config.ts` to your desired language or simply use the `develop` branch which is my modified version of the template without internationalization. The former will allow you to focus on a single language while still having the option to add more languages in the future.
+
+---
+
+<Feedback
+  title="Information"
+  description="If you have forked my GitHub repository, you'll have to make the following changes."
+/>
+
+<Table
+  data={{
+    headers: [
+      { content: "File", key: "file" },
+      { content: "Instruction", key: "instruction" },
+    ],
+    rows: [
+      [<code>messages/&lt;locale&gt;.json</code>, <>Use your own <a href="https://next-intl.dev/docs/usage/translations">translations</a>.</>],
+      [<code>src/proxy.ts</code>, <>Replace <code>(en|fr)</code> by all of your desired locales delimited by a pipe character <code>|</code> (<a href="https://next-intl.dev/docs/routing/middleware">see more</a>).</>],
+      [<><code>src/resources/content.tsx</code><code>src/resources/content-i18n.tsx</code></>, <>Update <code>person.languages</code> with your desired locales.</>],
+      [<code>src/resources/once-ui.config.ts</code>, <>Update <code>i18nOptions</code> with your desired locales. If you have more than two, you will need to update the language selector so it doesn't overlap with the site header.</>],
+      [<code>src/i18n/routing.ts</code>, <>Update <code>routing.pathnames</code> with your desired <a href="https://next-intl.dev/docs/routing/configuration#pathnames">localized pathnames</a>.</>],
+      [<><code>src/app/[locale]/blog/posts/&lt;locale&gt;/*.mdx</code><code>src/app/[locale]/work/projects/&lt;locale&gt;/*.mdx</code></>, <>Replace <code>&lt;locale&gt;</code> with your desired locale. Create a folder for each locale you want to support.</>],
+    ],
+  }}
+/>

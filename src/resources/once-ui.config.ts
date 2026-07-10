@@ -22,8 +22,8 @@ const i18n = true;
 
 // Manage localized content in the messages folder
 const i18nOptions = {
-  locales: ['en', 'id'], // A list of all locales that are supported, e.g. ['en','id']
-  defaultLocale: 'en' // Locale used by default and as a fallback
+  locales: ['en', 'fr'], // A list of all locales that are supported, e.g. ['en','fr']
+  defaultLocale: 'fr' // Locale used by default and as a fallback
 }
 
 const routes: RoutesConfig = {
@@ -31,7 +31,7 @@ const routes: RoutesConfig = {
   "/about": true,
   "/work": true,
   "/blog": true,
-  "/gallery": true,
+  "/gallery": false,
 };
 
 const display: DisplayConfig = {

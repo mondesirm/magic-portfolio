@@ -5,9 +5,19 @@ import { i18nOptions } from "@/resources";
 export const routing = defineRouting({
   locales: i18nOptions.locales,
   defaultLocale: i18nOptions.defaultLocale,
-
-  // Won't display `defaultLocale` in routes
-  localePrefix: "as-needed",
+  pathnames: {
+    "/": "/",
+    "/about": {
+      fr: "/a-propos",
+    },
+    "/work/[[...slug]]": {
+      fr: "/projets/[[...slug]]",
+    },
+    "/blog": "/blog",
+    "/gallery": {
+      fr: "/gallerie",
+    },
+  },
 });
 
 export type Locale = (typeof routing.locales)[number];

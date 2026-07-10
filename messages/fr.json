@@ -1,0 +1,129 @@
+{
+  "404": {
+    "title": "Page introuvable",
+    "description": "La page que vous recherchez n'existe pas."
+  },
+  "person": {
+    "role": "Ingénieur du Web"
+  },
+  "newsletter": {
+    "title": "Abonnez-vous à la newsletter de {firstName}",
+    "description": "Ma newsletter hebdomadaire sur la créativité et l'ingénierie.",
+    "button": "S'inscrire"
+  },
+  "home": {
+    "label": "Accueil",
+    "title": "Le portfolio de {name}",
+    "description": "Site portfolio présentant mon travail en tant que {role}.",
+    "headline": "Transformez vos processus opérationnels",
+    "featured": {
+      "title": "Mix Massage Art",
+      "subtitle": "En vedette"
+    },
+    "subline": "Je m'appelle {firstName}, un {role} en banlieue parisienne, <br></br>spécialisé dans l'automatisation de processus métier <br></br>et la digitalisation de commerces.",
+    "latest": "Derniers articles"
+  },
+  "about": {
+    "label": "À propos",
+    "title": "À propos de {name}",
+    "description": "Rencontrez {name}, {role} basé à {location}",
+    "calendar": {
+      "title": "Planifiez un appel"
+    },
+    "intro": {
+      "title": "Introduction",
+      "description": "{firstName} est un {role} basé sur {location} et ses environs, avec une passion pour intégrer des outils numériques dans les processus métier. Son travail couvre la conception d'applications Web et mobile, l'automatisation et la création de sites Web pour les petites entreprises."
+    },
+    "work": {
+      "title": "Expériences professionnelles",
+      "experiences": [
+        {
+          "timeframe": "Août 2023 → Présent",
+          "role": "Auto-entrepreneur / Webmaster",
+          "achievements": [
+            "Refonte de mon site portfolio (v2) et développement en cours d'un CRM",
+            "Accueil d'une stagiaire et rebranding d'une société dans le milieu du bien-être",
+            "2 sites Web dans le domaine du bien-être dont 1 pour une association pour malvoyants",
+            "3 autres dans la dératisation et le nettoyage dont l'un est un site e-commerce",
+            "Digitalisation d'une nouvelle société experte sur l'électricité générale et la domotique"
+          ]
+        },
+        {
+          "timeframe": "Septembre 2021 → Juin 2023",
+          "role": "Responsable Technique / Automatisation",
+          "achievements": [
+            "Montée en grade vers chef d'équipe et onboarding des nouveaux arrivant",
+            "Prise en charge des projets clients (contact direct et prise de rendez-vous)",
+            "Refonte et intégration <b>WooCommerce</b> pour <b>ProfilPlus Fabricant</b>",
+            "Formulaires de demande de partenariat pour <b>Service Limo Car</b> avec <b>Zoho</b>",
+            "Automatisation des process business clients et interne (<b>Zapier</b> et <b>Zoho</b>) :",
+            "Synchronisation journalière d'une base client à travers deux CRM",
+            "Envoi d'email d'un classement d'employés en fonction des appels effectués (API)"
+          ]
+        },
+        {
+          "timeframe": "Avril 2021 → Septembre 2021",
+          "role": "Concepteur Application Web et Mobile",
+          "achievements": [
+            "Migration d'un site de <b>CakePHP</b> vers <b>Laravel</b>",
+            "Application développée avec React Native, <b>Expo</b> et <b>Firebase</b> : <b>GMA Adequa</b>",
+            "Développement de trois sites Web en <b>Laravel</b> : <b>GMA Adequa</b>, <b>Rentor</b> et <b>Triber</b>",
+            "Développement de deux sites Web en <b>WordPress</b> : <b>Vizio</b> et <b>Hackers Corporation</b>"
+          ]
+        },
+        {
+          "timeframe": "Janvier 2020 → Août 2020",
+          "role": "Assistant Technicien Support Bureautique",
+          "achievements": [
+            "Automatisation en <b>JavaScript</b> et <b>PowerShell</b> sur la garantie du parc informatique",
+            "Gestion des comptes <b>Active Directory</b> sur les 8 sites de la société",
+            "Configuration des boîtes, listes de distribution <b>MS Exchange</b> et sites <b>MS SharePoint</b>"
+          ]
+        }
+      ]
+    },
+    "studies": {
+      "title": "Formations",
+      "institutions": [
+        {
+          "description": "Développement Full Stack / Applications en temps réel / Ingénierie DevOps"
+        },
+        {
+          "description": "Contrôle d'une main robotique imprimée en 3D par une application sur <b>Android</b>, via <b>Bluetooth</b>, ou par des capteurs d'activité musculaire : logique développée avec <b>Arduino</b>"
+        }
+      ]
+    },
+    "skills": {
+      "title": "Compétences",
+      "technical": {
+        "title": "Techniques",
+        "description": "Solutions digitales avec <b>Next.js</b> + <b>React</b> / <b>WordPress</b> + <b>Anime.js</b>."
+      },
+      "visual": {
+        "title": "Visuelles",
+        "description": "<b>Canva</b> (logotypes / moodboards / prototypes) et <b>Figma</b> (wireframes / mockups d'applications mobiles)"
+      }
+    }
+  },
+  "work": {
+    "label": "Projets",
+    "title": "Les projets de {name}",
+    "description": "Projets de conception et de développement par {name}",
+    "related": "Projets associés"
+  },
+  "blog": {
+    "label": "Blog",
+    "title": "Le blog de {name}",
+    "description": "Découvrez les dernières nouvelles de {name}",
+    "recent": "Derniers articles"
+  },
+  "gallery": {
+    "label": "Gallery",
+    "title": "La galerie de photos de {name}",
+    "description": "Une collection de photos de {name}"
+  },
+  "projectCard": {
+    "label": "Lire l'étude de cas",
+    "link": "Voir le projet"
+  }
+}
