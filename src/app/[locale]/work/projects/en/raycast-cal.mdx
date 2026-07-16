@@ -1,0 +1,62 @@
+---
+title: "How to Install the Raycast Extension for Cal.com on Windows"
+summary: "Could not install the Raycast extension for Cal.com on Windows, but just a single line of code change in the extension manifest was able to make it work."
+publishedAt: "2026-07-16"
+link: "https://github.com/mondesirm/raycast-cal"
+team:
+  - name: "Malik MONDESIR"
+    role: "Contributor"
+    avatar: "/images/avatar.jpg"
+    linkedIn: "https://linkedin.com/in/mondesirm"
+---
+
+Could not install the Raycast extension for Cal.com on Windows, but just a single line of code change in the extension manifest was able to make it work.
+
+<details>
+<summary><strong>What is Cal.com?</strong></summary>
+
+Cal.com is a scheduling platform that allows users to create and manage their calendars, set up meetings, and share meeting links with others.
+
+Click on the "Schedule a call" button at the top of my [profile page](/en/about) to see how it works.
+
+</details>
+
+---
+
+## Why I wanted to install this Raycast Extension
+
+I wanted to install the [Raycast extension for Cal.com](https://www.raycast.com/cal/cal-com-share-meeting-links) (and Cal.eu too) to easily manage my calendar and my working hours.
+
+However, I was unable to install the extension on Windows ; after a second look, I realized that the extension was only available for macOS.
+
+Raycast is new to Windows so I'm assuming most extensions haven't been tested on this operating system yet.
+
+## The single line of code that made it work
+
+After looking at the code, I realized there was no platform-dependent logic at all. Since "this extension only supports the cloud version of Cal.com", it should work all the same on Windows.
+
+So I created a [GitHub repository](https://github.com/mondesirm/raycast-cal) from it and added `Windows` to the `platforms` object in the extension manifest (`package.json`).
+
+<CodeBlock
+  codes={[
+    {
+      language: "json",
+      label: "package.json",
+      highlight: "4",
+      code: `{
+    // ...
+    "platforms": [
+      "Windows",
+      "macOS"
+    ]
+}`
+    }
+  ]}
+/>
+
+After that, you can just import the extension in Raycast (`Import Extension`), run it locally on Windows (`Manage Extensions > Actions > Start Development`) and it will work just like on macOS.
+
+<Feedback
+  title="TODO"
+  description="Create a pull request to the original extension repository to add Windows support."
+/>

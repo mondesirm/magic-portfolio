@@ -1,0 +1,62 @@
+---
+title: "Comment installer l'extension Raycast pour Cal.com sur Windows"
+summary: "Impossible d'installer l'extension Raycast pour Cal.com sur Windows, mais une ligne de code dans le manifeste de l'extension était suffisant pour le faire."
+publishedAt: "2026-07-16"
+link: "https://github.com/mondesirm/raycast-cal"
+team:
+  - name: "Malik MONDESIR"
+    role: "Contributor"
+    avatar: "/images/avatar.jpg"
+    linkedIn: "https://linkedin.com/in/mondesirm"
+---
+
+Impossible d'installer l'extension Raycast pour Cal.com sur Windows, mais une ligne de code dans le manifeste de l'extension était suffisant pour le faire.
+
+<details>
+<summary><strong>Qu'est-ce que Cal.com ?</strong></summary>
+
+Cal.com est une plateforme de planification qui permet aux utilisateurs de créer et de gérer leurs calendriers, d'organiser des réunions et de partager des liens de réunion avec d'autres personnes.
+
+Cliquez sur le bouton « Planifier un appel » en haut de ma [page de profil](/fr/a-propos) pour voir comment cela fonctionne.
+
+</details>
+
+---
+
+## Pourquoi j'ai voulu installer cette extension Raycast
+
+Je voulais installer l'extension [Raycast pour Cal.com](https://www.raycast.com/cal/cal-com-share-meeting-links) (et Cal.eu aussi) pour gérer facilement mon calendrier et mes horaires de travail.
+
+Cependant, je n'ai pas pu installer l'extension sur Windows ; après un second coup d'œil, j'ai réalisé qu'elle n'était disponible que pour macOS.
+
+Raycast étant nouveau sur Windows, je suppose que la plupart des extensions n'ont pas encore été testées sur ce système d'exploitation.
+
+## La seule ligne de code qui a permis que cela fonctionne
+
+Après avoir examiné le code, j'ai constaté qu'il ne comportait aucune logique spécifique à une plateforme. Puisque « cette extension ne prend en charge que la version cloud de Cal.com », elle devrait fonctionner de la même manière sur Windows.
+
+J'ai donc créé un [dépôt GitHub](https://github.com/mondesirm/raycast-cal) à partir de ça et j'ai ajouté `Windows` à l'objet `platforms` dans le manifeste de l'extension (`package.json`).
+
+<CodeBlock
+  codes={[
+    {
+      language: "json",
+      label: "package.json",
+      highlight: "4",
+      code: `{
+    // ...
+    "platforms": [
+      "Windows",
+      "macOS"
+    ]
+}`
+    }
+  ]}
+/>
+
+Après cela, il vous suffit d'importer l'extension dans Raycast (`Import Extension`), de l'exécuter localement sur Windows (`Manage Extensions > Actions > Start Development`) et elle fonctionnera exactement comme sous macOS.
+
+<Feedback
+  title="À faire"
+  description="Créez une demande de tirage vers le dépôt d'extension d'origine pour ajouter la prise en charge de Windows."
+/>
