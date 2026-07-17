@@ -1,4 +1,5 @@
 import type {
+  Background,
   BorderStyle,
   ChartMode,
   ChartVariant,
@@ -78,46 +79,10 @@ export type DataStyleConfig = {
 /**
  * Effects configuration for UI visuals.
  */
-export type EffectsConfig = {
-  mask: {
-    cursor: boolean;
-    x: number;
-    y: number;
-    radius: number;
-  };
-  gradient: {
-    display: boolean;
-    opacity: number;
-    x: number;
-    y: number;
-    width: number;
-    height: number;
-    tilt: number;
-    colorStart: string;
-    colorEnd: string;
-  };
-  dots: {
-    display: boolean;
-    opacity: number;
-    size: string;
-    color: string;
-  };
-  grid: {
-    display: boolean;
-    opacity: number;
-    color: string;
-    width: string;
-    height: string;
-  };
-  lines: {
-    display: boolean;
-    opacity: number;
-    color: string;
-    size: string;
-    thickness: number;
-    angle: number;
-  };
-};
+export type EffectsConfig = Pick<
+  React.ComponentProps<typeof Background>,
+  "gradient" | "dots" | "grid" | "lines" | "mask"
+>;
 
 /**
  * Mailchimp configuration for newsletter forms.

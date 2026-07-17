@@ -22,9 +22,9 @@ const i18n = true;
 
 // Manage localized content in the messages folder
 const i18nOptions = {
-  locales: ['en', 'fr'], // A list of all locales that are supported, e.g. ['en','fr']
-  defaultLocale: 'fr' // Locale used by default and as a fallback
-}
+  locales: ["en", "fr"], // A list of all locales that are supported, e.g. ['en','fr']
+  defaultLocale: "fr", // Locale used by default and as a fallback
+};
 
 const routes: RoutesConfig = {
   "/": true,
@@ -109,14 +109,8 @@ const dataStyle: DataStyleConfig = {
 };
 
 const effects: EffectsConfig = {
-  mask: {
-    cursor: false,
-    x: 50,
-    y: 0,
-    radius: 100,
-  },
   gradient: {
-    display: false,
+    display: true,
     opacity: 100,
     x: 50,
     y: 60,
@@ -147,17 +141,17 @@ const effects: EffectsConfig = {
     thickness: 1,
     angle: 45,
   },
+  mask: {
+    cursor: true,
+    x: 50,
+    y: 0,
+    radius: 100,
+  },
 };
 
 const mailchimp: MailchimpConfig = {
   action: "https://url/subscribe/post?parameters",
   effects: {
-    mask: {
-      cursor: true,
-      x: 50,
-      y: 0,
-      radius: 100,
-    },
     gradient: {
       display: true,
       opacity: 90,
@@ -190,6 +184,12 @@ const mailchimp: MailchimpConfig = {
       thickness: 1,
       angle: 90,
     },
+    mask: {
+      cursor: true,
+      x: 50,
+      y: 0,
+      radius: 100,
+    },
   },
 };
 
@@ -221,11 +221,11 @@ const socialSharing: SocialSharingConfig = {
   platforms: {
     x: true,
     linkedin: true,
-    facebook: false,
-    pinterest: false,
-    whatsapp: false,
-    reddit: false,
-    telegram: false,
+    facebook: true,
+    pinterest: true,
+    whatsapp: true,
+    reddit: true,
+    telegram: true,
     email: true,
     copyLink: true,
   },

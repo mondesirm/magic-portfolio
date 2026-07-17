@@ -1,6 +1,6 @@
 "use client";
 
-import { Fade, Flex, Line, Row, ToggleButton } from "@once-ui-system/core";
+import { Fade, Flex, IconButton, Line, Row, ScrollToTop, ToggleButton } from "@once-ui-system/core";
 import { useParams } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { useEffect, useState, useTransition } from "react";
@@ -86,6 +86,9 @@ export const Header = () => {
         <Row paddingLeft="12" fillWidth vertical="center" textVariant="body-default-s">
           {display.location && <Row s={{ hide: true }}>{person.location}</Row>}
         </Row>
+        <ScrollToTop bottom="32" s={{ hide: true }}>
+          <IconButton size="l" variant="secondary" icon="chevronUp" />
+        </ScrollToTop>
         <Row fillWidth horizontal="center">
           <Row
             background="page"

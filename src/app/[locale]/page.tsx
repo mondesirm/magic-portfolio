@@ -6,6 +6,7 @@ import {
   Heading,
   Line,
   Meta,
+  Pulse,
   RevealFx,
   Row,
   Schema,
@@ -42,21 +43,21 @@ export default async function Home({ params }: PageProps) {
           {home.featured.display && (
             <RevealFx
               fillWidth
-              horizontal="center"
               paddingTop="16"
-              paddingBottom="32"
               paddingLeft="12"
+              paddingBottom="32"
+              horizontal="center"
             >
               <Badge
-                background="brand-alpha-weak"
-                paddingX="12"
+                paddingX="8"
                 paddingY="4"
+                background="brand-alpha-weak"
                 onBackground="neutral-strong"
                 textVariant="label-default-s"
-                arrow={false}
                 href={`/${locale}/${home.featured.href}`}
               >
-                <Row paddingY="2">{home.featured.title}</Row>
+                <Pulse size="s"/>
+                <Row paddingY="2" marginLeft="4">{home.featured.title}</Row>
               </Badge>
             </RevealFx>
           )}
