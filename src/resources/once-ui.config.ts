@@ -29,6 +29,7 @@ const i18nOptions = {
 const routes: RoutesConfig = {
   "/": true,
   "/about": true,
+  "/book": true,
   "/work": true,
   "/blog": true,
   "/gallery": false,

@@ -1,5 +1,15 @@
 import { Line, Row, Text } from "@once-ui-system/core";
-import type { About, Blog, Gallery, Home, Newsletter, Person, Social, Work } from "@/types";
+import type {
+  About,
+  Blog,
+  Booking,
+  Gallery,
+  Home,
+  Newsletter,
+  Person,
+  Social,
+  Work,
+} from "@/types";
 
 const person: Person = {
   firstName: "Malik",
@@ -95,7 +105,6 @@ const about: About = {
   calendar: {
     display: true,
     title: "Schedule a call",
-    link: "https://cal.eu/mondesirm",
   },
   intro: {
     display: true,
@@ -284,6 +293,48 @@ const about: About = {
   },
 };
 
+const booking: Booking = {
+  path: "/book",
+  image: "/images/og/home.png",
+  label: "Book",
+  title: `Book a call with ${person.name}`,
+  description: `Choose the right call type to start the conversation with ${person.name}.`,
+  cta: "Book a call",
+  section: {
+    title: "Choose the right call",
+    description: (
+      <>Three booking options for the main ways new projects and audits usually begin.</>
+    ),
+  },
+  cards: [
+    {
+      title: "Discovery Call",
+      description: <>Quick intro to see if we are a good fit and what your next step should be.</>,
+      duration: "15 min",
+      bestFor: "New leads",
+      href: "https://cal.eu/mondesirm/discovery-call",
+    },
+    {
+      title: "Project Scoping Call",
+      description: (
+        <>Review your goals, constraints, timeline, and the systems involved in the project.</>
+      ),
+      duration: "45 min",
+      bestFor: "Project planning",
+      href: "https://cal.eu/mondesirm/project-scoping-call",
+    },
+    {
+      title: "Automation / CRM Audit",
+      description: (
+        <>Audit your automation, CRM, or internal workflow setup to find quick wins and gaps.</>
+      ),
+      duration: "45 min",
+      bestFor: "Existing systems",
+      href: "https://cal.eu/mondesirm/automation-crm-audit",
+    },
+  ],
+};
+
 const work: Work = {
   path: "/work",
   get image() {
@@ -364,4 +415,4 @@ const gallery: Gallery = {
   ],
 };
 
-export { about, blog, gallery, home, newsletter, person, social, work };
+export { about, blog, booking, gallery, home, newsletter, person, social, work };

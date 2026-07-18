@@ -31,7 +31,7 @@ export default async function Blog({ params }: PageProps) {
       <Column fillWidth flex={1} gap="40">
         <Posts range={[1, 1]} thumbnail locale={locale} />
         <Posts range={[2, 3]} columns="2" thumbnail direction="column" locale={locale} />
-        <Mailchimp marginBottom="l" newsletter={newsletter} />
+        {/* <Mailchimp marginBottom="l" newsletter={newsletter} /> */}
 
         <Heading as="h2" variant="heading-strong-xl" marginLeft="l">
           Earlier posts

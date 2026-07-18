@@ -1,5 +1,4 @@
 import { SmartLink } from "@once-ui-system/core";
-import { useLocale } from "next-intl";
 
 type Tag = "br" | "b" | "i" | "p" | "a";
 
@@ -8,8 +7,6 @@ type Props = {
 };
 
 export const RichText = ({ children }: Props) => {
-  const locale = useLocale();
-
   return (
     <div className="prose">
       {children({
@@ -17,7 +14,11 @@ export const RichText = ({ children }: Props) => {
         b: (chunks: React.ReactNode) => <b>{chunks}</b>,
         i: (chunks: React.ReactNode) => <i>{chunks}</i>,
         p: (chunks: React.ReactNode) => <p>{chunks}</p>,
-        a: (chunks: React.ReactNode) => <SmartLink href={`/${locale}`}>{chunks}</SmartLink>,
+        a: (chunks: React.ReactNode) => (
+          <SmartLink href={`/${(chunks as string).split("@")[0]}`}>
+            {(chunks as string).split("@")[1]}
+          </SmartLink>
+        ),
       })}
     </div>
   );

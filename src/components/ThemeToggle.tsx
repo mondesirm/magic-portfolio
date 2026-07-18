@@ -5,8 +5,8 @@ import type React from "react";
 import { useEffect, useState } from "react";
 
 export const ThemeToggle: React.FC = () => {
+  const [, setMounted] = useState(false);
   const { theme, setTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
   const [currentTheme, setCurrentTheme] = useState("light");
 
   useEffect(() => {

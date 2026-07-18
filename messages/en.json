@@ -11,6 +11,9 @@
     "description": "My weekly newsletter about creativity and engineering.",
     "button": "Sign up"
   },
+  "footer": {
+    "builtWith": "built with"
+  },
   "home": {
     "label": "Home",
     "title": "{name}'s Portfolio",
@@ -22,6 +25,36 @@
     },
     "subline": "I'm {firstName}, {role} in the suburbs of Paris,<br></br>specializing in <b>Business Process Automation</b><br></br>and the digitalization of businesses.",
     "latest": "Latest from the blog"
+  },
+  "book": {
+    "label": "Book",
+    "title": "Book a call with {name}",
+    "description": "Start with a low-friction discovery call, then move into project scoping or an automation audit when you need more depth.",
+    "cta": "Book a call",
+    "section": {
+      "title": "Choose the right call",
+      "description": "Three booking options for the main ways new projects and audits usually begin."
+    },
+    "cards": [
+      {
+        "title": "Discovery Call",
+        "description": "Quick intro to see if we are a good fit and what your next step should be.",
+        "duration": "15 min",
+        "bestFor": "First contact"
+      },
+      {
+        "title": "Project Scoping Call",
+        "description": "Review your goals, constraints, timeline, and the systems involved in the project.",
+        "duration": "45 min",
+        "bestFor": "Project planning"
+      },
+      {
+        "title": "Automation / CRM Audit",
+        "description": "Audit your automation, CRM, or internal workflow setup to find quick wins and gaps.",
+        "duration": "45 min",
+        "bestFor": "Existing systems"
+      }
+    ]
   },
   "about": {
     "label": "About",

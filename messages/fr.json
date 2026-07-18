@@ -11,6 +11,9 @@
     "description": "Ma newsletter hebdomadaire sur la créativité et l'ingénierie.",
     "button": "S'inscrire"
   },
+  "footer": {
+    "builtWith": "conçu avec"
+  },
   "home": {
     "label": "Accueil",
     "title": "Le portfolio de {name}",
@@ -22,6 +25,36 @@
     },
     "subline": "Je m'appelle {firstName}, un {role} en banlieue parisienne, <br></br>spécialisé dans l'automatisation de processus métier <br></br>et la digitalisation de commerces.",
     "latest": "Derniers articles"
+  },
+  "book": {
+    "label": "Réserver",
+    "title": "Réserver un appel avec {name}",
+    "description": "Commencez par un appel découverte à faible engagement, puis passez au cadrage de projet ou à un audit d'automatisation quand vous avez besoin de plus de profondeur.",
+    "cta": "Réserver un appel",
+    "section": {
+      "title": "Choisissez le bon appel",
+      "description": "Trois formats de réservation pour les façons les plus courantes de démarrer un projet ou un audit."
+    },
+    "cards": [
+      {
+        "title": "Appel découverte",
+        "description": "Petit échange pour voir si nous sommes un bon fit et quelle doit être la prochaine étape.",
+        "duration": "15 min",
+        "bestFor": "Premier contact"
+      },
+      {
+        "title": "Cadrage de projet",
+        "description": "Revue des objectifs, des contraintes, du délai et des systèmes concernés.",
+        "duration": "45 min",
+        "bestFor": "Préparation de projet"
+      },
+      {
+        "title": "Audit automatisation / CRM",
+        "description": "Audit de votre automatisation, CRM ou workflow interne pour repérer les gains rapides et les manques.",
+        "duration": "45 min",
+        "bestFor": "Systèmes existants"
+      }
+    ]
   },
   "about": {
     "label": "À propos",

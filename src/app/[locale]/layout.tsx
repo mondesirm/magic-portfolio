@@ -2,7 +2,7 @@ import "@once-ui-system/core/css/styles.css";
 import "@once-ui-system/core/css/tokens.css";
 import "@/resources/custom.css";
 
-import { Background, Column, Flex, Meta, RevealFx } from "@once-ui-system/core";
+import { Background, Column, Flex, Meta, Particle, RevealFx } from "@once-ui-system/core";
 import classNames from "classnames";
 import type { Metadata } from "next";
 import { NextIntlClientProvider } from "next-intl";
@@ -122,7 +122,10 @@ export default async function RootLayout({
             margin="0"
             padding="0"
             horizontal="center"
+            s={{ style: { paddingBlock: '32px' } }}
           >
+            <Particle fill interactive position="absolute" />
+
             <RevealFx fill position="absolute">
               <Background {...effects} />
             </RevealFx>

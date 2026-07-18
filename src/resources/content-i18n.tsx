@@ -1,7 +1,17 @@
 import { Line, Row, Text } from "@once-ui-system/core";
 import type { getTranslations } from "next-intl/server";
 import { RichText } from "@/components/RichText";
-import type { About, Blog, Gallery, Home, Newsletter, Person, Social, Work } from "@/types";
+import type {
+  About,
+  Blog,
+  Booking,
+  Gallery,
+  Home,
+  Newsletter,
+  Person,
+  Social,
+  Work,
+} from "@/types";
 
 const createI18nContent = (t: Awaited<ReturnType<typeof getTranslations>>) => {
   const person: Person = {
@@ -79,6 +89,42 @@ const createI18nContent = (t: Awaited<ReturnType<typeof getTranslations>>) => {
     latest: t("home.latest"),
   };
 
+  const booking: Booking = {
+    path: "/book",
+    image: "/images/og/home.jpg",
+    label: t("book.label"),
+    title: t("book.title", { name: person.name }),
+    description: t("book.description", { name: person.name }),
+    cta: t("book.cta"),
+    section: {
+      title: t("book.section.title"),
+      description: <RichText>{(tags) => t.rich("book.section.description", tags)}</RichText>,
+    },
+    cards: [
+      {
+        title: t("book.cards.0.title"),
+        description: <RichText>{(tags) => t.rich("book.cards.0.description", tags)}</RichText>,
+        duration: t("book.cards.0.duration"),
+        bestFor: t("book.cards.0.bestFor"),
+        href: "https://cal.eu/mondesirm/discovery-call",
+      },
+      {
+        title: t("book.cards.1.title"),
+        description: <RichText>{(tags) => t.rich("book.cards.1.description", tags)}</RichText>,
+        duration: t("book.cards.1.duration"),
+        bestFor: t("book.cards.1.bestFor"),
+        href: "https://cal.eu/mondesirm/project-scoping-call",
+      },
+      {
+        title: t("book.cards.2.title"),
+        description: <RichText>{(tags) => t.rich("book.cards.2.description", tags)}</RichText>,
+        duration: t("book.cards.2.duration"),
+        bestFor: t("book.cards.2.bestFor"),
+        href: "https://cal.eu/mondesirm/automation-crm-audit",
+      },
+    ],
+  };
+
   const about: About = {
     path: "/about",
     get image() {
@@ -101,7 +147,6 @@ const createI18nContent = (t: Awaited<ReturnType<typeof getTranslations>>) => {
     calendar: {
       display: true,
       title: t("about.calendar.title"),
-      link: "https://cal.eu/mondesirm",
     },
     intro: {
       display: true,
@@ -291,7 +336,7 @@ const createI18nContent = (t: Awaited<ReturnType<typeof getTranslations>>) => {
     ],
   };
 
-  return { person, social, newsletter, home, about, blog, work, gallery };
+  return { person, social, newsletter, home, booking, about, blog, work, gallery };
 };
 
 export { createI18nContent };

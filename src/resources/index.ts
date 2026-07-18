@@ -2,6 +2,7 @@
 export {
   about,
   blog,
+  booking,
   gallery,
   home,
   newsletter,

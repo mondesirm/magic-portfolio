@@ -1,5 +1,6 @@
 import {
   Avatar,
+  Badge,
   Button,
   Column,
   Heading,
@@ -7,6 +8,7 @@ import {
   IconButton,
   Media,
   Meta,
+  Pulse,
   Row,
   Schema,
   Tag,
@@ -31,16 +33,12 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 export default async function About({ params }: PageProps) {
   const { locale } = await params;
   setRequestLocale(locale);
-  const format = await getFormatter();
   const t = await getTranslations();
-  const { about, person, social } = renderContent(t);
+  const format = await getFormatter();
+  const { about, booking, person, social } = renderContent(t);
 
   const structure = [
-    {
-      title: about.intro.title,
-      display: about.intro.display,
-      items: [],
-    },
+    { title: about.intro.title, display: about.intro.display },
     {
       title: about.work.title,
       display: about.work.display,
@@ -118,39 +116,28 @@ export default async function About({ params }: PageProps) {
           </Column>
         )}
 
-        <Column className={styles.blockAlign} flex={9} maxWidth={40}>
+        <Column flex={9} maxWidth={40}>
           <Column
             id={about.intro.title}
             fillWidth
             minHeight="160"
             vertical="center"
             marginBottom="32"
+            s={{ horizontal: "center" }}
           >
             {about.calendar.display && (
-              <Row
-                fitWidth
-                border="brand-alpha-medium"
-                background="brand-alpha-weak"
-                radius="full"
-                padding="4"
+              <Badge
                 gap="8"
                 marginBottom="m"
-                vertical="center"
-                className={styles.blockAlign}
-                style={{
-                  backdropFilter: "blur(var(--static-space-1))",
-                }}
+                background="brand-alpha-weak"
+                // className={styles.blockAlign}
+                href={`/${locale}${booking.path}`}
+                // s={{ style: { alignSelf: "center" } }}
               >
-                <Icon paddingLeft="12" name="calendar" onBackground="brand-weak" />
-                <Row paddingX="8">{about.calendar.title}</Row>
-
-                <IconButton
-                  href={about.calendar.link}
-                  data-border="rounded"
-                  variant="secondary"
-                  icon="chevronRight"
-                />
-              </Row>
+                <Pulse size="s" />
+                {/* <Icon name="calendar" size="s" onBackground="brand-weak" /> */}
+                {about.calendar.title}
+              </Badge>
             )}
 
             <Heading className={styles.textAlign} variant="display-strong-xl">

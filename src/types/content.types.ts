@@ -11,7 +11,7 @@ export type IANATimeZone = Extract<keyof typeof zones, string>; // Narrow to str
  * BCP 47 language tag (e.g., 'en', 'ja', 'zh-TW').
  * See: https://en.wikipedia.org/wiki/IETF_language_tag
  */
-export type Locale = Lowercase<string>
+export type Locale = Lowercase<string>;
 
 /**
  * Represents a person featured in the portfolio.
@@ -85,7 +85,7 @@ export interface BasePageConfig {
    *
    * The path should be relative to the public directory
    */
-  path: `/${string}` | string;
+  path: `/${string}`;
   /** Label for navigation or display */
   label: string;
   /** Title of the page */
@@ -111,7 +111,7 @@ export interface Home extends BasePageConfig {
   featured: {
     display: boolean;
     title: React.ReactNode;
-    href: string;
+    href: `/${string}`;
   };
   /** The sub text which appears below the headline */
   subline: React.ReactNode;
@@ -142,8 +142,6 @@ export interface About extends BasePageConfig {
     display: boolean;
     /** Title for the calendar section */
     title: string;
-    /** Link to the calendar */
-    link: string;
   };
   /** Introduction section */
   intro: {
@@ -227,6 +225,39 @@ export interface About extends BasePageConfig {
       }>;
     }>;
   };
+}
+
+/**
+ * Booking card configuration.
+ */
+export type BookingCard = {
+  /** Booking card title */
+  title: string;
+  /** Short booking card description */
+  description: React.ReactNode;
+  /** Call duration */
+  duration: string;
+  /** Ideal use case for the call */
+  bestFor: string;
+  /** Booking URL */
+  href: string;
+};
+
+/**
+ * Booking page and CTA configuration.
+ */
+export interface Booking extends BasePageConfig {
+  /** Primary CTA label used in the hero and footer */
+  cta: string;
+  /** Section title and description for the booking cards */
+  section: {
+    /** Section title */
+    title: string;
+    /** Section description */
+    description: React.ReactNode;
+  };
+  /** Booking cards to display */
+  cards: BookingCard[];
 }
 
 /**

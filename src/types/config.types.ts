@@ -79,9 +79,8 @@ export type DataStyleConfig = {
 /**
  * Effects configuration for UI visuals.
  */
-export type EffectsConfig = Pick<
-  React.ComponentProps<typeof Background>,
-  "gradient" | "dots" | "grid" | "lines" | "mask"
+export type EffectsConfig = Required<
+  Pick<React.ComponentProps<typeof Background>, "gradient" | "dots" | "grid" | "lines" | "mask">
 >;
 
 /**

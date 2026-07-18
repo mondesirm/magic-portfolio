@@ -54,21 +54,13 @@ export const Header = () => {
   }
 
   const t = useTranslations();
-  const { person, about, blog, work, gallery } = renderContent(t);
+  const { person, about, blog, booking, work, gallery } = renderContent(t);
 
   return (
     <>
-      <Fade s={{ hide: true }} fillWidth position="fixed" height="80" zIndex={9} />
-      <Fade
-        hide
-        s={{ hide: false }}
-        fillWidth
-        position="fixed"
-        bottom="0"
-        to="top"
-        height="80"
-        zIndex={9}
-      />
+      <Fade position="fixed" height="80" zIndex={9} />
+      <Fade position="fixed" bottom="0" to="top" height="80" zIndex={9} />
+
       <Row
         fitHeight
         className={styles.position}
@@ -123,6 +115,25 @@ export const Header = () => {
                       prefixIcon="person"
                       href={`/${params?.locale}/about`}
                       selected={pathname === "/about"}
+                    />
+                  </Row>
+                </>
+              )}
+              {routes["/book"] && (
+                <>
+                  <Row s={{ hide: true }}>
+                    <ToggleButton
+                      prefixIcon="calendar"
+                      href={`/${params?.locale}/book`}
+                      label={booking.label}
+                      selected={pathname.startsWith("/book")}
+                    />
+                  </Row>
+                  <Row hide s={{ hide: false }}>
+                    <ToggleButton
+                      prefixIcon="calendar"
+                      href={`/${params?.locale}/book`}
+                      selected={pathname.startsWith("/book")}
                     />
                   </Row>
                 </>

@@ -16,6 +16,8 @@ import type { Metadata } from "next";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Mailchimp } from "@/components";
 import { Posts } from "@/components/blog/Posts";
+import { BookingHoverCards } from "@/components/booking/BookingHoverCards";
+import { BookingSection } from "@/components/booking/BookingList";
 import { Projects } from "@/components/work/Projects";
 import { author, baseURL, renderContent, routes } from "@/resources";
 import type { PageProps } from "@/types";
@@ -32,32 +34,29 @@ export default async function Home({ params }: PageProps) {
   const { locale } = await params;
   setRequestLocale(locale);
   const t = await getTranslations();
-  const { about, home, newsletter, person } = renderContent(t);
+  const { about, booking, home, newsletter, person } = renderContent(t);
 
   return (
-    <Column maxWidth="m" gap="xl" paddingY="12" horizontal="center">
-      <Schema {...home} as="webPage" author={author(locale)} baseURL={`${baseURL}/${locale}`} />
+    <Column gap="xl" maxWidth="m">
+      <Schema as="webPage" author={author(locale)} baseURL={`${baseURL}/${locale}`} {...home} />
 
-      <Column fillWidth horizontal="center" gap="m">
-        <Column maxWidth="s" horizontal="center" align="center">
+      <Column center>
+        <Column maxWidth="s" align="center">
           {home.featured.display && (
-            <RevealFx
-              fillWidth
-              paddingTop="16"
-              paddingLeft="12"
-              paddingBottom="32"
-              horizontal="center"
-            >
+            <RevealFx center fillWidth paddingY="32">
               <Badge
                 paddingX="8"
                 paddingY="4"
                 background="brand-alpha-weak"
                 onBackground="neutral-strong"
                 textVariant="label-default-s"
-                href={`/${locale}/${home.featured.href}`}
+                href={`/${locale}${home.featured.href}`}
               >
-                <Pulse size="s"/>
-                <Row paddingY="2" marginLeft="4">{home.featured.title}</Row>
+                <Pulse size="s" />
+
+                <Row paddingY="2" marginLeft="4">
+                  {home.featured.title}
+                </Row>
               </Badge>
             </RevealFx>
           )}
@@ -68,40 +67,62 @@ export default async function Home({ params }: PageProps) {
             </Heading>
           </RevealFx>
 
-          <RevealFx translateY="8" delay={0.2} fillWidth horizontal="center" paddingBottom="32">
+          <RevealFx delay={0.2} translateY="8" fillWidth horizontal="center" paddingBottom="32">
             <Text wrap="balance" onBackground="neutral-weak" variant="heading-default-xl">
               {home.subline}
             </Text>
           </RevealFx>
 
-          <RevealFx paddingTop="12" delay={0.4} horizontal="center" paddingLeft="12">
-            <Button
-              id="about"
-              data-border="rounded"
-              href={`/${locale}/${about.path}`}
-              variant="secondary"
-              size="m"
-              weight="default"
-              arrowIcon
-            >
-              <Row gap="8" vertical="center" paddingRight="4">
-                {about.avatar.display && (
-                  <Avatar
-                    marginRight="8"
-                    style={{ marginLeft: "-0.75rem" }}
-                    src={person.avatar}
-                    size="m"
-                  />
-                )}
+          <RevealFx delay={0.4} paddingTop="12" horizontal="center" paddingLeft="12">
+            <Row gap="12" wrap horizontal="center" vertical="center">
+              <Button
+                id={about.label}
+                data-border="rounded"
+                href={`/${locale}${about.path}`}
+                variant="secondary"
+                size="m"
+                weight="default"
+                arrowIcon
+              >
+                <Row gap="8" vertical="center" paddingRight="4">
+                  {about.avatar.display && (
+                    <Avatar
+                      marginRight="8"
+                      style={{ marginLeft: "-0.75rem" }}
+                      src={person.avatar}
+                      size="m"
+                    />
+                  )}
 
-                {about.title}
-              </Row>
-            </Button>
+                  {about.title}
+                </Row>
+              </Button>
+
+              <Button
+                id={booking.label}
+                data-border="rounded"
+                href={`/${locale}${booking.path}`}
+                variant="primary"
+                size="m"
+                weight="default"
+                arrowIcon
+              >
+                {booking.cta}
+              </Button>
+            </Row>
           </RevealFx>
         </Column>
       </Column>
 
-      <RevealFx translateY="16" delay={0.6}>
+      <RevealFx delay={0.4} translateY={8}>
+        <BookingSection cards={booking.cards} />
+      </RevealFx>
+
+      {/* <RevealFx delay={0.4} translateY={8} center>
+        <BookingHoverCards cards={booking.cards} />
+      </RevealFx> */}
+
+      <RevealFx delay={0.6} translateY={8}>
         <Projects range={[1, 1]} locale={locale} />
       </RevealFx>
 
@@ -130,7 +151,7 @@ export default async function Home({ params }: PageProps) {
       )}
 
       <Projects range={[2]} locale={locale} />
-      <Mailchimp newsletter={newsletter} />
+      {/* <Mailchimp newsletter={newsletter} /> */}
     </Column>
   );
 }

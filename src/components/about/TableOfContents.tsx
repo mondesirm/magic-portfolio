@@ -8,7 +8,7 @@ interface TableOfContentsProps {
   structure: {
     title: string;
     display: boolean;
-    items: string[];
+    items?: string[];
   }[];
   about: {
     tableOfContent: {
@@ -62,7 +62,7 @@ const TableOfContents: React.FC<TableOfContentsProps> = ({ structure, about }) =
               <Text>{section.title}</Text>
             </Flex>
             {about.tableOfContent.subItems &&
-              section.items.map((item) => (
+              section.items?.map((item) => (
                 <Flex
                   l={{ hide: true }}
                   key={item}
