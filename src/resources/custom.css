@@ -1,3 +1,8 @@
+/* Mode switch transition */
+:root[data-theme-transition]::view-transition-group(root) {
+  animation: none;
+}
+
 /* :root {
   /*
   /* Override default variables here */
