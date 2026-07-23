@@ -116,27 +116,23 @@ export default async function RootLayout({
         <Providers>
           <Column
             as="body"
-            background="page"
             fillWidth
-            style={{ minHeight: "100vh" }}
             margin="0"
-            padding="0"
+            minHeight="100vh"
+            background="page"
             horizontal="center"
-            s={{ style: { paddingBlock: '32px' } }}
+            s={{ style: { paddingTop: "32px" } }}
           >
-            <Particle fill interactive position="absolute" />
-
-            <RevealFx fill position="absolute">
+            <RevealFx fill position="absolute" top="0">
               <Background {...effects} />
+              <Particle fill interactive position="absolute" />
             </RevealFx>
 
             <Flex fillWidth minHeight="16" s={{ hide: true }} />
             <Header />
 
-            <Flex zIndex={0} fillWidth padding="l" horizontal="center" flex={1}>
-              <Flex horizontal="center" fillWidth minHeight="0">
-                <RouteGuard>{children}</RouteGuard>
-              </Flex>
+            <Flex fillWidth padding="l" horizontal="center" flex={1}>
+              <RouteGuard>{children}</RouteGuard>
             </Flex>
 
             <Footer />

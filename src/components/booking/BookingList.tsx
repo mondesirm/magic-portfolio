@@ -12,14 +12,15 @@ export function BookingSection({ cards }: BookingSectionProps) {
         <SmartLink key={card.title} href={card.href} fillWidth unstyled>
           <Card
             fillWidth
+            fillHeight
+            gap="16"
             flex={1}
             minWidth={15}
             padding="24"
             radius="l-4"
-            border="neutral-alpha-weak"
-            background="surface"
             direction="column"
-            gap="16"
+            background="surface"
+            border="neutral-alpha-weak"
           >
             <Row gap="8" wrap>
               <Tag size="s">{card.duration}</Tag>

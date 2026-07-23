@@ -1,17 +1,7 @@
 import { Line, Row, Text } from "@once-ui-system/core";
 import type { getTranslations } from "next-intl/server";
 import { RichText } from "@/components/RichText";
-import type {
-  About,
-  Blog,
-  Booking,
-  Gallery,
-  Home,
-  Newsletter,
-  Person,
-  Social,
-  Work,
-} from "@/types";
+import type { About, Blog, Book, Gallery, Home, Newsletter, Person, Social, Work } from "@/types";
 
 const createI18nContent = (t: Awaited<ReturnType<typeof getTranslations>>) => {
   const person: Person = {
@@ -24,7 +14,7 @@ const createI18nContent = (t: Awaited<ReturnType<typeof getTranslations>>) => {
     avatar: "/images/avatar.jpg",
     email: "contact@mondesirm.me",
     location: "Europe/Paris", // Expecting the IANA time zone identifier, e.g., 'Europe/Vienna'
-    languages: ["en", "fr"], // optional: Leave the array empty if you don't want to display languages
+    languages: ["fr", "en"], // optional: Leave the array empty if you don't want to display languages
     locale: "en", // BCP 47 language tag for the HTML lang attribute, e.g., 'en', 'ja', 'zh-TW'
   };
 
@@ -89,7 +79,7 @@ const createI18nContent = (t: Awaited<ReturnType<typeof getTranslations>>) => {
     latest: t("home.latest"),
   };
 
-  const booking: Booking = {
+  const booking: Book = {
     path: "/book",
     image: "/images/og/home.jpg",
     label: t("book.label"),
@@ -169,8 +159,8 @@ const createI18nContent = (t: Awaited<ReturnType<typeof getTranslations>>) => {
       title: t("about.work.title"),
       experiences: [
         {
+          timeframe: ["2023/08", new Date()],
           company: "MALIK MONDESIR (EI) · Drancy (93)",
-          timeframe: t("about.work.experiences.0.timeframe"),
           role: t("about.work.experiences.0.role"),
           achievements: Array.from({ length: 5 }, (_, index) => (
             // biome-ignore lint/suspicious/noArrayIndexKey: static list
@@ -189,8 +179,8 @@ const createI18nContent = (t: Awaited<ReturnType<typeof getTranslations>>) => {
           ],
         },
         {
-          company: "Business Evasion · Paris 12e",
-          timeframe: t("about.work.experiences.1.timeframe"),
+          company: "Hackers Corporation · Paris 12e",
+          timeframe: ["2021/09", "2023/06"],
           role: t("about.work.experiences.1.role"),
           achievements: Array.from({ length: 7 }, (_, index) => (
             // biome-ignore lint/suspicious/noArrayIndexKey: static list
@@ -202,7 +192,7 @@ const createI18nContent = (t: Awaited<ReturnType<typeof getTranslations>>) => {
         },
         {
           company: "Hackers Corporation · Paris 12e",
-          timeframe: t("about.work.experiences.2.timeframe"),
+          timeframe: ["2021/04", "2021/09"],
           role: t("about.work.experiences.2.role"),
           achievements: Array.from({ length: 4 }, (_, index) => (
             // biome-ignore lint/suspicious/noArrayIndexKey: static list
@@ -214,7 +204,7 @@ const createI18nContent = (t: Awaited<ReturnType<typeof getTranslations>>) => {
         },
         {
           company: "Hub One · Roissy Charles de Gaulle",
-          timeframe: t("about.work.experiences.3.timeframe"),
+          timeframe: ["2020/01", "2020/08"],
           role: t("about.work.experiences.3.role"),
           achievements: Array.from({ length: 3 }, (_, index) => (
             // biome-ignore lint/suspicious/noArrayIndexKey: static list
@@ -229,22 +219,39 @@ const createI18nContent = (t: Awaited<ReturnType<typeof getTranslations>>) => {
     studies: {
       display: true, // set to false to hide this section
       title: t("about.studies.title"),
-      institutions: [
+      courses: [
         {
-          name: "École Supérieure du Génie Informatique",
-          description: (
-            <RichText>
-              {(tags) => t.rich("about.studies.institutions.0.description", tags)}
+          timeframe: ["2026", "2027"],
+          school: "École Decode · Paris 11e",
+          degree: t("about.studies.courses.0.degree"),
+          achievements: Array.from({ length: 0 }, (_, index) => (
+            // biome-ignore lint/suspicious/noArrayIndexKey: static list
+            <RichText key={index}>
+              {(tags) => t.rich(`about.studies.courses.0.achievements.${index}`, tags)}
             </RichText>
-          ),
+          )),
         },
         {
-          name: "Lycée et UFA Robert Schuman",
-          description: (
-            <RichText>
-              {(tags) => t.rich("about.studies.institutions.1.description", tags)}
+          timeframe: ["2020", "2023"],
+          school: "École Supérieure du Génie Informatique · Paris 12e",
+          degree: t("about.studies.courses.1.degree"),
+          achievements: Array.from({ length: 3 }, (_, index) => (
+            // biome-ignore lint/suspicious/noArrayIndexKey: static list
+            <RichText key={index}>
+              {(tags) => t.rich(`about.studies.courses.1.achievements.${index}`, tags)}
             </RichText>
-          ),
+          )),
+        },
+        {
+          timeframe: ["2016", "2020"],
+          school: "Lycée et UFA Robert Schuman · Dugny (93)",
+          degree: t("about.studies.courses.2.degree"),
+          achievements: Array.from({ length: 1 }, (_, index) => (
+            // biome-ignore lint/suspicious/noArrayIndexKey: static list
+            <RichText key={index}>
+              {(tags) => t.rich(`about.studies.courses.2.achievements.${index}`, tags)}
+            </RichText>
+          )),
         },
       ],
     },

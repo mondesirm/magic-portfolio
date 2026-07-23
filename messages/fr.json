@@ -26,6 +26,102 @@
     "subline": "Je m'appelle {firstName}, un {role} en banlieue parisienne, <br></br>spécialisé dans l'automatisation de processus métier <br></br>et la digitalisation de commerces.",
     "latest": "Derniers articles"
   },
+  "about": {
+    "label": "À propos",
+    "title": "À propos de {name}",
+    "description": "Rencontrez {name}, {role} basé à {location}",
+    "calendar": {
+      "title": "Planifiez un appel"
+    },
+    "intro": {
+      "title": "Introduction",
+      "description": "{firstName} est un {role} basé sur {location}, avec une passion pour intégrer des outils numériques dans les processus métier. Son travail couvre la conception d'applications Web et mobile, l'automatisation et la création de sites Web pour les petites entreprises."
+    },
+    "work": {
+      "title": "Expériences professionnelles",
+      "experiences": [
+        {
+          "timeframe": "2023/08 → Présent",
+          "role": "Auto-entrepreneur / Webmaster",
+          "achievements": [
+            "Refonte de mon site portfolio (v2) et développement en cours d'un CRM",
+            "Accueil d'une stagiaire et rebranding d'une société dans le milieu du bien-être",
+            "2 sites Web dans le domaine du bien-être dont 1 pour une association pour malvoyants",
+            "3 autres dans la dératisation et le nettoyage dont l'un est un site e-commerce",
+            "Digitalisation d'une nouvelle société experte sur l'électricité générale et la domotique"
+          ]
+        },
+        {
+          "timeframe": "2021/09 → 2023/06",
+          "role": "Responsable Technique / Automatisation",
+          "achievements": [
+            "Montée en grade vers chef d'équipe et onboarding des nouveaux arrivant",
+            "Prise en charge des projets clients (contact direct et prise de rendez-vous)",
+            "Refonte et intégration <b>WooCommerce</b> pour <b>ProfilPlus Fabricant</b>",
+            "Formulaires de demande de partenariat pour <b>Service Limo Car</b> avec <b>Zoho</b>",
+            "Automatisation des process business clients et interne (<b>Zapier</b> et <b>Zoho</b>) :",
+            "Synchronisation journalière d'une base client à travers deux CRM",
+            "Envoi d'email d'un classement d'employés en fonction des appels effectués (API)"
+          ]
+        },
+        {
+          "timeframe": "2021/04 → 2021/09",
+          "role": "Concepteur Application Web et Mobile",
+          "achievements": [
+            "Migration d'un site de <b>CakePHP</b> vers <b>Laravel</b>",
+            "Application développée avec React Native, <b>Expo</b> et <b>Firebase</b> : <b>GMA Adequa</b>",
+            "Développement de trois sites Web en <b>Laravel</b> : <b>GMA Adequa</b>, <b>Rentor</b> et <b>Triber</b>",
+            "Développement de deux sites Web en <b>WordPress</b> : <b>Vizio</b> et <b>Hackers Corporation</b>"
+          ]
+        },
+        {
+          "timeframe": "2020/01 → 2020/08",
+          "role": "Assistant Technicien Support Bureautique",
+          "achievements": [
+            "Automatisation en <b>JavaScript</b> et <b>PowerShell</b> sur la garantie du parc informatique",
+            "Gestion des comptes <b>Active Directory</b> sur les 8 sites de la société",
+            "Configuration des boîtes, listes de distribution <b>MS Exchange</b> et sites <b>MS SharePoint</b>"
+          ]
+        }
+      ]
+    },
+    "studies": {
+      "title": "Formations",
+      "courses": [
+        {
+          "timeframe": "2026 → 2027",
+          "degree": "Mastère Expert NoCode, Automation & IA"
+        },
+        {
+          "timeframe": "2020 → 2023",
+          "degree": "Bachelor et Mastère Ingénierie du Web",
+          "achievements": [
+            "Développement full stack : frameworks <b>JS</b> / <b>PHP</b> / <b>Django</b>, dont un réalisé from scratch",
+            "Applications en temps réel : <b>React Native</b>, <b>Flutter</b> / <b>SSE</b>, polling, <b>WebRTC</b> et <b>WebSocket</b>",
+            "Ingénierie DevOps (environnements et cloud) : <b>Docker</b>, <b>Kubernetes</b>, <b>Azure</b> et <b>Terraform</b>"
+          ]
+        },
+        {
+          "timeframe": "2016 → 2020",
+          "degree": "BAC STI2D Option SIN + BTS SIO Option SLAM",
+          "achievements": [
+            "Contrôle d'une main robotique imprimée en 3D par une application sur <b>Android</b>, via <b>Bluetooth</b>, ou par des capteurs d'activité musculaire : logique développée avec <b>Arduino</b>"
+          ]
+        }
+      ]
+    },
+    "skills": {
+      "title": "Compétences",
+      "technical": {
+        "title": "Techniques",
+        "description": "Solutions digitales avec <b>Next.js</b> + <b>React</b> / <b>WordPress</b> + <b>Anime.js</b>."
+      },
+      "visual": {
+        "title": "Visuelles",
+        "description": "<b>Canva</b> (logotypes / moodboards / prototypes) et <b>Figma</b> (wireframes / mockups d'applications mobiles)"
+      }
+    }
+  },
   "book": {
     "label": "Réserver",
     "title": "Réserver un appel avec {name}",
@@ -55,88 +151,6 @@
         "bestFor": "Systèmes existants"
       }
     ]
-  },
-  "about": {
-    "label": "À propos",
-    "title": "À propos de {name}",
-    "description": "Rencontrez {name}, {role} basé à {location}",
-    "calendar": {
-      "title": "Planifiez un appel"
-    },
-    "intro": {
-      "title": "Introduction",
-      "description": "{firstName} est un {role} basé sur {location} et ses environs, avec une passion pour intégrer des outils numériques dans les processus métier. Son travail couvre la conception d'applications Web et mobile, l'automatisation et la création de sites Web pour les petites entreprises."
-    },
-    "work": {
-      "title": "Expériences professionnelles",
-      "experiences": [
-        {
-          "timeframe": "Août 2023 → Présent",
-          "role": "Auto-entrepreneur / Webmaster",
-          "achievements": [
-            "Refonte de mon site portfolio (v2) et développement en cours d'un CRM",
-            "Accueil d'une stagiaire et rebranding d'une société dans le milieu du bien-être",
-            "2 sites Web dans le domaine du bien-être dont 1 pour une association pour malvoyants",
-            "3 autres dans la dératisation et le nettoyage dont l'un est un site e-commerce",
-            "Digitalisation d'une nouvelle société experte sur l'électricité générale et la domotique"
-          ]
-        },
-        {
-          "timeframe": "Septembre 2021 → Juin 2023",
-          "role": "Responsable Technique / Automatisation",
-          "achievements": [
-            "Montée en grade vers chef d'équipe et onboarding des nouveaux arrivant",
-            "Prise en charge des projets clients (contact direct et prise de rendez-vous)",
-            "Refonte et intégration <b>WooCommerce</b> pour <b>ProfilPlus Fabricant</b>",
-            "Formulaires de demande de partenariat pour <b>Service Limo Car</b> avec <b>Zoho</b>",
-            "Automatisation des process business clients et interne (<b>Zapier</b> et <b>Zoho</b>) :",
-            "Synchronisation journalière d'une base client à travers deux CRM",
-            "Envoi d'email d'un classement d'employés en fonction des appels effectués (API)"
-          ]
-        },
-        {
-          "timeframe": "Avril 2021 → Septembre 2021",
-          "role": "Concepteur Application Web et Mobile",
-          "achievements": [
-            "Migration d'un site de <b>CakePHP</b> vers <b>Laravel</b>",
-            "Application développée avec React Native, <b>Expo</b> et <b>Firebase</b> : <b>GMA Adequa</b>",
-            "Développement de trois sites Web en <b>Laravel</b> : <b>GMA Adequa</b>, <b>Rentor</b> et <b>Triber</b>",
-            "Développement de deux sites Web en <b>WordPress</b> : <b>Vizio</b> et <b>Hackers Corporation</b>"
-          ]
-        },
-        {
-          "timeframe": "Janvier 2020 → Août 2020",
-          "role": "Assistant Technicien Support Bureautique",
-          "achievements": [
-            "Automatisation en <b>JavaScript</b> et <b>PowerShell</b> sur la garantie du parc informatique",
-            "Gestion des comptes <b>Active Directory</b> sur les 8 sites de la société",
-            "Configuration des boîtes, listes de distribution <b>MS Exchange</b> et sites <b>MS SharePoint</b>"
-          ]
-        }
-      ]
-    },
-    "studies": {
-      "title": "Formations",
-      "institutions": [
-        {
-          "description": "Développement Full Stack / Applications en temps réel / Ingénierie DevOps"
-        },
-        {
-          "description": "Contrôle d'une main robotique imprimée en 3D par une application sur <b>Android</b>, via <b>Bluetooth</b>, ou par des capteurs d'activité musculaire : logique développée avec <b>Arduino</b>"
-        }
-      ]
-    },
-    "skills": {
-      "title": "Compétences",
-      "technical": {
-        "title": "Techniques",
-        "description": "Solutions digitales avec <b>Next.js</b> + <b>React</b> / <b>WordPress</b> + <b>Anime.js</b>."
-      },
-      "visual": {
-        "title": "Visuelles",
-        "description": "<b>Canva</b> (logotypes / moodboards / prototypes) et <b>Figma</b> (wireframes / mockups d'applications mobiles)"
-      }
-    }
   },
   "work": {
     "label": "Projets",

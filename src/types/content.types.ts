@@ -160,14 +160,14 @@ export interface About extends BasePageConfig {
     title: string;
     /** List of work experiences */
     experiences: Array<{
+      /** Timeframe of employment */
+      timeframe: [string | Date, string | Date];
       /** Company name */
       company: string;
-      /** Timeframe of employment */
-      timeframe: string;
       /** Role or job title */
       role: string;
       /** Achievements at the company */
-      achievements: React.ReactNode[];
+      achievements?: React.ReactNode[];
       /** Images related to the experience */
       images?: Array<{
         /** Image source path */
@@ -187,12 +187,16 @@ export interface About extends BasePageConfig {
     display: boolean;
     /** Title for the studies section */
     title: string;
-    /** List of institutions attended */
-    institutions: Array<{
-      /** Institution name */
-      name: string;
-      /** Description of studies */
-      description: React.ReactNode;
+    /** List of courses attended */
+    courses: Array<{
+      /** Timeframe of study */
+      timeframe: [string | Date, string | Date];
+      /** School name */
+      school: string;
+      /** Degree(s) obtained */
+      degree: string;
+      /** Achievements at the institution */
+      achievements?: React.ReactNode[];
     }>;
   };
   /** Skills section */
@@ -246,7 +250,7 @@ export type BookingCard = {
 /**
  * Booking page and CTA configuration.
  */
-export interface Booking extends BasePageConfig {
+export interface Book extends BasePageConfig {
   /** Primary CTA label used in the hero and footer */
   cta: string;
   /** Section title and description for the booking cards */

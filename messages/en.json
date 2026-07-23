@@ -23,8 +23,97 @@
       "title": "Mix Massage Art",
       "subtitle": "Featured work"
     },
-    "subline": "I'm {firstName}, {role} in the suburbs of Paris,<br></br>specializing in <b>Business Process Automation</b><br></br>and the digitalization of businesses.",
+    "subline": "I'm {firstName}, a {role} in the suburbs of Paris,<br></br>specializing in <b>Business Process Automation</b><br></br>and the digitalization of businesses.",
     "latest": "Latest from the blog"
+  },
+  "about": {
+    "label": "About",
+    "title": "About {name}",
+    "description": "Meet {name}, {role} from {location}",
+    "calendar": {
+      "title": "Schedule a call"
+    },
+    "intro": {
+      "title": "Introduction",
+      "description": "{firstName} is a {location}-based {role}, with a passion for integrating digital tools into business processes. His work covers Web and mobile application design, automation, and website creation for small businesses."
+    },
+    "work": {
+      "title": "Work Experience",
+      "experiences": [
+        {
+          "role": "Self-employed / Webmaster",
+          "achievements": [
+            "Redesign of my portfolio website (v2) and ongoing development of a CRM",
+            "Welcoming an intern and rebranding a company in the wellness sector",
+            "2 websites in the wellness sector, one of which is for an association for the visually impaired",
+            "3 others in pest control and cleaning, one of which is an e-commerce site",
+            "Digitalization of a new company specializing in general electrical work and home automation"
+          ]
+        },
+        {
+          "role": "Technical Manager / Automation",
+          "achievements": [
+            "Promotion to team lead and onboarding of new hires",
+            "Handling client projects (direct contact and appointment scheduling)",
+            "Redesign and integration of <b>WooCommerce</b> for <b>ProfilPlus Fabricant</b>",
+            "Partnership request forms for <b>Service Limo Car</b> with <b>Zoho</b>",
+            "Automation of business processes for clients and internal use (<b>Zapier</b> and <b>Zoho</b>) :",
+            "Daily synchronization of a customer database across two CRMs",
+            "Sending emails with employee rankings based on call activity (API)"
+          ]
+        },
+        {
+          "role": "Web & Mobile Application Designer",
+          "achievements": [
+            "One site migration from <b>CakePHP</b> to <b>Laravel</b>",
+            "One application developed with <b>React Native</b>, <b>Expo</b> and <b>Firebase</b>: <b>GMA Adequa</b>",
+            "Three websites developed with <b>Laravel</b>: <b>GMA Adequa</b>, <b>Rentor</b> et <b>Triber</b>",
+            "Two websites developed with <b>WordPress</b>: <b>Vizio</b> et <b>Hackers Corporation</b>"
+          ]
+        },
+        {
+          "role": "Office Support Technician Assistant",
+          "achievements": [
+            "Automation using <b>JavaScript</b> and <b>PowerShell</b> for IT asset warranty",
+            "Managing <b>Active Directory</b> accounts across the company's 8 sites",
+            "Configuring mailboxes, <b>MS Exchange</b> distribution lists and <b>MS SharePoint</b> sites"
+          ]
+        }
+      ]
+    },
+    "studies": {
+      "title": "Studies",
+      "courses": [
+        {
+          "degree": "Master's Degree in No-Code, Automation & AI"
+        },
+        {
+          "degree": "Bachelor and Master's Degree in Web Engineering",
+          "achievements": [
+            "Full-stack development: <b>JS</b> / <b>PHP</b> / <b>Django</b> frameworks, including one built from scratch",
+            "Real-time applications: <b>React Native</b>, <b>Flutter</b> / <b>SSE</b>, polling, <b>WebRTC</b> and <b>WebSocket</b>",
+            "DevOps Engineering (environments and cloud): <b>Docker</b>, <b>Kubernetes</b>, <b>Azure</b> and <b>Terraform</b>"
+          ]
+        },
+        {
+          "degree": "BAC STI2D Option SIN + BTS SIO Option SLAM",
+          "achievements": [
+            "Controlling a 3D-printed robotic hand via an <b>Android</b> app, <b>Bluetooth</b>, or muscle activity sensors: logic developed with <b>Arduino</b>"
+          ]
+        }
+      ]
+    },
+    "skills": {
+      "title": "Skills",
+      "technical": {
+        "title": "Technical",
+        "description": "Digital solutions with <b>Next.js</b> + <b>React</b> / <b>WordPress</b> + <b>Anime.js</b>."
+      },
+      "visual": {
+        "title": "Visual",
+        "description": "<b>Canva</b> (logotypes / moodboards / prototypes) and <b>Figma</b> (wireframes / mobile application mockups)"
+      }
+    }
   },
   "book": {
     "label": "Book",
@@ -55,88 +144,6 @@
         "bestFor": "Existing systems"
       }
     ]
-  },
-  "about": {
-    "label": "About",
-    "title": "About {name}",
-    "description": "Meet {name}, {role} from {location}",
-    "calendar": {
-      "title": "Schedule a call"
-    },
-    "intro": {
-      "title": "Introduction",
-      "description": "{firstName} is a {location}-based {role}, with a passion for integrating digital tools into business processes. His work covers Web and mobile application design, automation, and website creation for small businesses."
-    },
-    "work": {
-      "title": "Work Experience",
-      "experiences": [
-        {
-          "timeframe": "August 2023 → Present",
-          "role": "Self-employed / Webmaster",
-          "achievements": [
-            "Redesign of my portfolio website (v2) and ongoing development of a CRM",
-            "Welcoming an intern and rebranding a company in the wellness sector",
-            "2 websites in the wellness sector, one of which is for an association for the visually impaired",
-            "3 others in pest control and cleaning, one of which is an e-commerce site",
-            "Digitalization of a new company specializing in general electrical work and home automation"
-          ]
-        },
-        {
-          "timeframe": "September 2021 → June 2023",
-          "role": "Technical Manager / Automation",
-          "achievements": [
-            "Promotion to team lead and onboarding of new hires",
-            "Handling client projects (direct contact and appointment scheduling)",
-            "Redesign and integration of <b>WooCommerce</b> for <b>ProfilPlus Fabricant</b>",
-            "Partnership request forms for <b>Service Limo Car</b> with <b>Zoho</b>",
-            "Automation of business processes for clients and internal use (<b>Zapier</b> and <b>Zoho</b>) :",
-            "Daily synchronization of a customer database across two CRMs",
-            "Sending emails with employee rankings based on call activity (API)"
-          ]
-        },
-        {
-          "timeframe": "April 2021 → September 2021",
-          "role": "Web and Mobile Application Designer",
-          "achievements": [
-            "One site migration from <b>CakePHP</b> to <b>Laravel</b>",
-            "One application developed with <b>React Native</b>, <b>Expo</b> and <b>Firebase</b>: <b>GMA Adequa</b>",
-            "Three websites developed with <b>Laravel</b>: <b>GMA Adequa</b>, <b>Rentor</b> et <b>Triber</b>",
-            "Two websites developed with <b>WordPress</b>: <b>Vizio</b> et <b>Hackers Corporation</b>"
-          ]
-        },
-        {
-          "timeframe": "January 2020 → August 2020",
-          "role": "Office Support Technician Assistant",
-          "achievements": [
-            "Automation using <b>JavaScript</b> and <b>PowerShell</b> for IT asset warranty",
-            "Managing <b>Active Directory</b> accounts across the company's 8 sites",
-            "Configuring mailboxes, <b>MS Exchange</b> distribution lists and <b>MS SharePoint</b> sites"
-          ]
-        }
-      ]
-    },
-    "studies": {
-      "title": "Studies",
-      "institutions": [
-        {
-          "description": "Full Stack Development / Real-Time Applications / DevOps Engineering"
-        },
-        {
-          "description": "Controlling a 3D-printed robotic hand via an <b>Android</b> app, <b>Bluetooth</b>, or muscle activity sensors: logic developed with <b>Arduino</b>"
-        }
-      ]
-    },
-    "skills": {
-      "title": "Skills",
-      "technical": {
-        "title": "Technical",
-        "description": "Digital solutions with <b>Next.js</b> + <b>React</b> / <b>WordPress</b> + <b>Anime.js</b>."
-      },
-      "visual": {
-        "title": "Visual",
-        "description": "<b>Canva</b> (logotypes / moodboards / prototypes) and <b>Figma</b> (wireframes / mobile application mockups)"
-      }
-    }
   },
   "work": {
     "label": "Work",

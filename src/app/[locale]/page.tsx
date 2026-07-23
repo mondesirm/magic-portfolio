@@ -87,10 +87,10 @@ export default async function Home({ params }: PageProps) {
                 <Row gap="8" vertical="center" paddingRight="4">
                   {about.avatar.display && (
                     <Avatar
-                      marginRight="8"
-                      style={{ marginLeft: "-0.75rem" }}
                       src={person.avatar}
                       size="m"
+                      marginRight="8"
+                      style={{ marginLeft: "-0.75rem" }}
                     />
                   )}
 
@@ -100,12 +100,12 @@ export default async function Home({ params }: PageProps) {
 
               <Button
                 id={booking.label}
+                arrowIcon
+                size="m"
+                variant="primary"
+                weight="default"
                 data-border="rounded"
                 href={`/${locale}${booking.path}`}
-                variant="primary"
-                size="m"
-                weight="default"
-                arrowIcon
               >
                 {booking.cta}
               </Button>

@@ -13,8 +13,10 @@ import {
   Schema,
   Tag,
   Text,
+  Timeline,
 } from "@once-ui-system/core";
 import type { Metadata } from "next";
+import type { DateTimeFormatOptions } from "next-intl";
 import { getFormatter, getTranslations, setRequestLocale } from "next-intl/server";
 import React from "react";
 import styles from "@/components/about/about.module.scss";
@@ -42,12 +44,12 @@ export default async function About({ params }: PageProps) {
     {
       title: about.work.title,
       display: about.work.display,
-      items: about.work.experiences.map((experience) => experience.company),
+      items: about.work.experiences.map((experience) => experience.role),
     },
     {
       title: about.studies.title,
       display: about.studies.display,
-      items: about.studies.institutions.map((institution) => institution.name),
+      items: about.studies.courses.map((course) => course.degree),
     },
     {
       title: about.skills.title,
@@ -55,6 +57,9 @@ export default async function About({ params }: PageProps) {
       items: about.skills.categories.map((category) => category.title),
     },
   ];
+
+  const experienceOptions: DateTimeFormatOptions = { year: "numeric", month: "short" };
+  const courseOptions: DateTimeFormatOptions = { year: "numeric" };
 
   return (
     <Column maxWidth="m">
@@ -81,21 +86,21 @@ export default async function About({ params }: PageProps) {
         </Column>
       )}
 
-      <Row fillWidth s={{ direction: "column" }} horizontal="center">
+      <Row fillWidth s={{ direction: "column" }}>
         {about.avatar.display && (
           <Column
-            className={styles.avatar}
-            top="64"
             fitHeight
-            position="sticky"
-            s={{ position: "relative", style: { top: "auto" } }}
-            xs={{ style: { top: "auto" } }}
+            gap="m"
+            top="64"
+            flex={3}
             minWidth="160"
             paddingX="l"
             paddingBottom="xl"
-            gap="m"
-            flex={3}
             horizontal="center"
+            position="sticky"
+            className={styles.avatar}
+            s={{ position: "relative", style: { top: "auto" } }}
+            xs={{ style: { top: "auto" } }}
           >
             <Avatar src={person.avatar} size="xl" />
 
@@ -116,12 +121,11 @@ export default async function About({ params }: PageProps) {
           </Column>
         )}
 
-        <Column flex={9} maxWidth={40}>
+        <Column flex={9}>
           <Column
             id={about.intro.title}
             fillWidth
             minHeight="160"
-            vertical="center"
             marginBottom="32"
             s={{ horizontal: "center" }}
           >
@@ -154,14 +158,14 @@ export default async function About({ params }: PageProps) {
 
             {social.length > 0 && (
               <Row
-                className={styles.blockAlign}
+                wrap
+                fitWidth
                 paddingTop="20"
                 paddingBottom="8"
                 gap="8"
-                wrap
                 horizontal="center"
-                fitWidth
                 data-border="rounded"
+                className={styles.blockAlign}
               >
                 {social
                   .filter((item) => item.essential)
@@ -198,7 +202,7 @@ export default async function About({ params }: PageProps) {
           </Column>
 
           {about.intro.display && (
-            <Column textVariant="body-default-l" fillWidth gap="m" marginBottom="xl">
+            <Column fillWidth textVariant="body-default-l" gap="m" marginBottom="xl">
               {about.intro.description}
             </Column>
           )}
@@ -209,61 +213,64 @@ export default async function About({ params }: PageProps) {
                 {about.work.title}
               </Heading>
 
-              <Column fillWidth gap="l" marginBottom="40">
-                {about.work.experiences.map((experience) => (
-                  <Column key={`${experience.company}-${experience.role}`} fillWidth>
-                    <Row fillWidth horizontal="between" vertical="end" marginBottom="4">
-                      <Text id={experience.company} variant="heading-strong-l">
-                        {experience.company}
+              <Timeline
+                items={about.work.experiences.map((experience, i) => ({
+                  state: i === 0 ? "active" : "success",
+                  marker: i !== 0 && <Icon name="check" size="xl" onBackground="accent-strong" />,
+                  label: (
+                    <Row wrap fillWidth horizontal="between" vertical="center">
+                      <Text id={experience.role} variant="heading-strong-l">
+                        {experience.role}
                       </Text>
 
                       <Text variant="heading-default-xs" onBackground="neutral-weak">
-                        {experience.timeframe}
+                        {format.dateTime(new Date(experience.timeframe[0]), experienceOptions)} →{" "}
+                        {format.dateTime(new Date(experience.timeframe[1]), experienceOptions)}
                       </Text>
                     </Row>
-
-                    <Text variant="body-default-s" onBackground="brand-weak" marginBottom="m">
-                      {experience.role}
-                    </Text>
-
-                    <Column as="ul" gap="16">
-                      {experience.achievements.map((achievement, index) => (
-                        <Text
-                          as="li"
-                          variant="body-default-m"
-                          // biome-ignore lint/suspicious/noArrayIndexKey: static list
-                          key={`${experience.company}-${index}`}
-                        >
-                          {achievement}
-                        </Text>
-                      ))}
-                    </Column>
-
-                    {experience.images && experience.images.length > 0 && (
-                      <Row fillWidth paddingTop="m" paddingLeft="40" gap="12" wrap>
-                        {experience.images.map((image, index) => (
-                          <Row
+                  ),
+                  description: experience.company,
+                  children: !!experience.achievements?.length && (
+                    <>
+                      <Column as="ul" gap="16">
+                        {experience.achievements?.map((achievement, j) => (
+                          <Text
+                            as="li"
+                            variant="body-default-m"
                             // biome-ignore lint/suspicious/noArrayIndexKey: static list
-                            key={index}
-                            border="neutral-medium"
-                            radius="m"
-                            minWidth={image.width}
-                            height={image.height}
+                            key={`${experience.company}-${j}`}
                           >
-                            <Media
-                              enlarge
-                              radius="m"
-                              sizes={image.width.toString()}
-                              alt={image.alt}
-                              src={image.src}
-                            />
-                          </Row>
+                            {achievement}
+                          </Text>
                         ))}
-                      </Row>
-                    )}
-                  </Column>
-                ))}
-              </Column>
+                      </Column>
+
+                      {experience.images && experience.images.length > 0 && (
+                        <Row fillWidth paddingTop="m" paddingLeft="40" gap="12" wrap>
+                          {experience.images.map((image, index) => (
+                            <Row
+                              // biome-ignore lint/suspicious/noArrayIndexKey: static list
+                              key={index}
+                              height={image.height}
+                              minWidth={image.width}
+                              radius="m"
+                              border="neutral-medium"
+                            >
+                              <Media
+                                enlarge
+                                radius="m"
+                                sizes={image.width.toString()}
+                                alt={image.alt}
+                                src={image.src}
+                              />
+                            </Row>
+                          ))}
+                        </Row>
+                      )}
+                    </>
+                  ),
+                }))}
+              />
             </>
           )}
 
@@ -273,19 +280,39 @@ export default async function About({ params }: PageProps) {
                 {about.studies.title}
               </Heading>
 
-              <Column fillWidth gap="l" marginBottom="40">
-                {about.studies.institutions.map((institution) => (
-                  <Column key={institution.name} fillWidth gap="4">
-                    <Text id={institution.name} variant="heading-strong-l">
-                      {institution.name}
-                    </Text>
+              <Timeline
+                items={about.studies.courses.map((course, i) => ({
+                  state: i === 0 ? "active" : "success",
+                  marker: i !== 0 && <Icon name="check" size="xl" onBackground="accent-strong" />,
+                  label: (
+                    <Row wrap fillWidth horizontal="between" vertical="center">
+                      <Text id={course.degree} variant="heading-strong-l">
+                        {course.degree}
+                      </Text>
 
-                    <Text variant="heading-default-xs" onBackground="neutral-weak">
-                      {institution.description}
-                    </Text>
-                  </Column>
-                ))}
-              </Column>
+                      <Text variant="heading-default-xs" onBackground="neutral-weak">
+                        {format.dateTime(new Date(course.timeframe[0]), courseOptions)} →{" "}
+                        {format.dateTime(new Date(course.timeframe[1]), courseOptions)}
+                      </Text>
+                    </Row>
+                  ),
+                  description: course.school,
+                  children: !!course.achievements?.length && (
+                    <Column as="ul" gap="16">
+                      {course.achievements?.map((achievement, j) => (
+                        <Text
+                          as="li"
+                          variant="body-default-m"
+                          // biome-ignore lint/suspicious/noArrayIndexKey: static list
+                          key={`${course.school}-${j}`}
+                        >
+                          {achievement}
+                        </Text>
+                      ))}
+                    </Column>
+                  ),
+                }))}
+              />
             </>
           )}
 

@@ -1,15 +1,5 @@
 import { Line, Row, Text } from "@once-ui-system/core";
-import type {
-  About,
-  Blog,
-  Booking,
-  Gallery,
-  Home,
-  Newsletter,
-  Person,
-  Social,
-  Work,
-} from "@/types";
+import type { About, Blog, Book, Gallery, Home, Newsletter, Person, Social, Work } from "@/types";
 
 const person: Person = {
   firstName: "Malik",
@@ -21,7 +11,7 @@ const person: Person = {
   avatar: "/images/avatar.jpg",
   email: "contact@mondesirm.me",
   location: "Europe/Paris", // Expecting the IANA time zone identifier, e.g., 'Europe/Vienna'
-  languages: ["en", "fr"], // optional: Leave the array empty if you don't want to display languages
+  languages: ["fr", "en"], // optional: Leave the array empty if you don't want to display languages
   locale: "fr", // BCP 47 language tag for the HTML lang attribute, e.g., 'en', 'ja', 'zh-TW'
 };
 
@@ -69,7 +59,6 @@ const home: Home = {
       <Row gap="12" vertical="center">
         <strong className="ml-4">Mix Massage Art</strong>{" "}
         <Line background="brand-alpha-strong" vert height="20" />
-
         <Text marginRight="4" onBackground="brand-medium">
           Featured work
         </Text>
@@ -123,8 +112,8 @@ const about: About = {
     title: "Work Experience",
     experiences: [
       {
+        timeframe: ["2023-08", new Date()],
         company: "MALIK MONDESIR (EI) · Drancy (93)",
-        timeframe: "August 2023 → Present",
         role: "Self-employed / Webmaster",
         achievements: [
           <>Redesign of my portfolio website (v2) and ongoing development of a CRM</>,
@@ -150,8 +139,8 @@ const about: About = {
         ],
       },
       {
-        company: "Business Evasion · Paris 12e",
-        timeframe: "September 2021 → June 2023",
+        timeframe: ["2021-09", "2023-06"],
+        company: "Hackers Corporation · Paris 12e",
         role: "Technical Manager / Automation",
         achievements: [
           <>Promotion to team lead and onboarding of new hires</>,
@@ -172,9 +161,9 @@ const about: About = {
         images: [],
       },
       {
+        timeframe: ["2021-04", "2021-09"],
         company: "Hackers Corporation · Paris 12e",
-        timeframe: "April 2021 → September 2021",
-        role: "Web and Mobile Application Designer",
+        role: "Web & Mobile Application Designer",
         achievements: [
           <>
             One site migration from <b>CakePHP</b> to <b>Laravel</b>
@@ -194,8 +183,8 @@ const about: About = {
         images: [],
       },
       {
+        timeframe: ["2020-01", "2020-08"],
         company: "Hub One · Roissy Charles de Gaulle",
-        timeframe: "January 2020 → August 2020",
         role: "Office Support Technician Assistant",
         achievements: [
           <>
@@ -216,19 +205,41 @@ const about: About = {
   studies: {
     display: true, // set to false to hide this section
     title: "Studies",
-    institutions: [
+    courses: [
       {
-        name: "École Supérieure du Génie Informatique",
-        description: <>Full Stack Development / Real-Time Applications / DevOps Engineering</>,
+        timeframe: ["2026", "2027"],
+        school: "École Decode · Paris 11e",
+        degree: "Master's Degree in No-Code, Automation & AI",
       },
       {
-        name: "Lycée et UFA Robert Schuman",
-        description: (
+        timeframe: ["2020", "2023"],
+        school: "École Supérieure du Génie Informatique · Paris 12e",
+        degree: "Bachelor and Master's Degree in Web Engineering",
+        achievements: [
+          <>
+            Full-stack development: <b>JS</b> / <b>PHP</b> / <b>Django</b> frameworks, including one
+            built from scratch
+          </>,
+          <>
+            Real-time applications: <b>React Native</b>, <b>Flutter</b> / <b>SSE</b>, polling,{" "}
+            <b>WebRTC</b> and <b>WebSocket</b>
+          </>,
+          <>
+            DevOps Engineering (environments and cloud): <b>Docker</b>, <b>Kubernetes</b>,{" "}
+            <b>Azure</b> and <b>Terraform</b>
+          </>,
+        ],
+      },
+      {
+        timeframe: ["2016", "2020"],
+        school: "Lycée et UFA Robert Schuman · Dugny (93)",
+        degree: "BAC STI2D Option SIN + BTS SIO Option SLAM",
+        achievements: [
           <>
             Controlling a 3D-printed robotic hand via an <b>Android</b> app, <b>Bluetooth</b>, or
             muscle activity sensors: logic developed with <b>Arduino</b>
-          </>
-        ),
+          </>,
+        ],
       },
     ],
   },
@@ -293,7 +304,7 @@ const about: About = {
   },
 };
 
-const booking: Booking = {
+const book: Book = {
   path: "/book",
   image: "/images/og/home.png",
   label: "Book",
@@ -415,4 +426,4 @@ const gallery: Gallery = {
   ],
 };
 
-export { about, blog, booking, gallery, home, newsletter, person, social, work };
+export { about, blog, book as booking, gallery, home, newsletter, person, social, work };
